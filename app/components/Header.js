@@ -19,7 +19,7 @@ const Header = () => {
     <header className="bg-background text-white p-4 border-b">
       <div className="container mx-auto flex justify-between items-center">
         {/* Logo */}
-        <div className="flex justify-between items-center w-52">
+        <div className="flex justify-between items-center w-40">
           <Image src={logo} alt="Logo" width={40} height={40} />{" "}
           {/* Ensure logo has width and height */}
           <div
