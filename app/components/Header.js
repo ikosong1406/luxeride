@@ -7,7 +7,7 @@ import Image from "next/image";
 import { useState } from "react";
 import Link from "next/link";
 
-const Header = () => {
+const Header = ({ children }) => {
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
 
@@ -121,6 +121,7 @@ const Header = () => {
           </div>
         </div>
       )}
+      <main>{children}</main>
     </header>
   );
 };
