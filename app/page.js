@@ -108,8 +108,8 @@ export default function Home() {
                 src={pic1}
                 alt="Step 1"
                 layout="responsive"
-                width={100}
-                height={100}
+                width={50}
+                height={50}
               />
               <h3 className="text-xl font-bold my-4">Buy & Sell Crypto</h3>
               <p>
@@ -122,8 +122,8 @@ export default function Home() {
                 src={pic2}
                 alt="Step 2"
                 layout="responsive"
-                width={100}
-                height={100}
+                width={50}
+                height={50}
               />
               <h3 className="text-xl font-bold my-4">Trade Assets</h3>
               <p>
@@ -136,8 +136,8 @@ export default function Home() {
                 src={pic3}
                 alt="Step 3"
                 layout="responsive"
-                width={100}
-                height={100}
+                width={50}
+                height={50}
               />
               <h3 className="text-xl font-bold my-4">Learn Crypto</h3>
               <p>
@@ -157,7 +157,7 @@ export default function Home() {
               src={mobile}
               alt="About Us"
               layout="responsive"
-              width={500}
+              width={300}
               height={300}
             />
           </div>

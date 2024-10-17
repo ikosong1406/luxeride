@@ -16,6 +16,7 @@ module.exports = {
     colors: {
       background: "#141317",
       bluey: "#3772FF",
+      orange: "#ec8305",
     },
     screens: {
       sm: "640px",
