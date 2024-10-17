@@ -57,7 +57,7 @@ const Signup = () => {
               Sign Up
             </button>
           </form>
-          <p className="text-gray-400 mt-6 text-center">
+          <p className="text-gray-400 mt-6 text-center text-sm">
             Already have an account?
             <span
               className="text-orange cursor-pointer ml-2"

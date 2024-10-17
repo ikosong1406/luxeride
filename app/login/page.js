@@ -45,7 +45,7 @@ const Login = () => {
               Login
             </button>
           </form>
-          <p className="text-gray-400 mt-6 text-center">
+          <p className="text-gray-400 mt-6 text-center text-sm">
             Don't have an account?
             <span
               className="text-orange cursor-pointer ml-2"
