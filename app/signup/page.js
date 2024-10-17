@@ -23,7 +23,7 @@ const Signup = () => {
       {/* Signup Section */}
       <div className="lg:w-1/2 flex flex-col items-center justify-center py-16 px-8 mt-16">
         <div className="w-full max-w-md">
-          <h2 className="text-3xl font-semibold text-center mb-6">
+          <h2 className="text-2xl font-semibold text-center mb-6">
             Create a BitCloud Account
           </h2>
 

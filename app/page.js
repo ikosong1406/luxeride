@@ -40,10 +40,10 @@ export default function Home() {
         {/* Content Over the Video */}
         <div className="container mx-auto relative z-10 flex flex-col md:flex-row items-center justify-between">
           <div className="md:w-1/2">
-            <h1 className="text-4xl font-bold mb-6">
+            <h1 className="text-3xl font-bold mb-6">
               Buy & sell crypto in minutes
             </h1>
-            <p className="mb-6 text-lg">
+            <p className="mb-6 text-base">
               Trade your favorite crypto assets with ease on the most secure and
               fast-growing exchange platform.
             </p>
@@ -82,7 +82,7 @@ export default function Home() {
       {/* Top 10 Cryptos with Charts */}
       <section className="bg-background text-white py-16 px-6">
         <div className="container mx-auto">
-          <h2 className="text-3xl font-bold text-center mb-8">Market Trend</h2>
+          <h2 className="text-2xl font-bold text-center mb-8">Market Trend</h2>
           <TradingViewTop10 />
         </div>
       </section>
@@ -99,7 +99,7 @@ export default function Home() {
           />
         </div>
         <div className="container mx-auto relative z-10 ">
-          <h2 className="text-3xl font-bold text-center mb-8">
+          <h2 className="text-2xl font-bold text-center mb-8">
             Become a Crypto Trader in Seconds
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -162,7 +162,7 @@ export default function Home() {
             />
           </div>
           <div className="md:w-1/2 md:ml-8">
-            <h2 className="text-3xl font-bold mb-4">Why Choose BitCloud?</h2>
+            <h2 className="text-2xl font-bold mb-4">Why Choose BitCloud?</h2>
             <p className="mb-4">
               BitCloud is a leading cryptocurrency exchange that provides a
               secure and user-friendly experience. Whether you're a beginner or
@@ -181,7 +181,7 @@ export default function Home() {
       {/* How It Works Section */}
       <section className="bg-gray-900 text-white py-16 px-6">
         <div className="container mx-auto">
-          <h2 className="text-3xl font-bold text-center mb-8">How It Works</h2>
+          <h2 className="text-2xl font-bold text-center mb-8">How It Works</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="bg-gray-800 p-6 rounded-lg">
               <h3 className="text-xl font-bold mb-4">Step 1: Create Account</h3>

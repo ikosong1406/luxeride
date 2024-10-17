@@ -19,11 +19,11 @@ const Header = () => {
     <header className="bg-background text-white p-4 border-b">
       <div className="container mx-auto flex justify-between items-center">
         {/* Logo */}
-        <div className="flex justify-between items-center w-40">
-          <Image src={logo} alt="Logo" width={40} height={40} />{" "}
+        <div className="flex justify-between items-center w-32">
+          <Image src={logo} alt="Logo" width={30} height={30} />{" "}
           {/* Ensure logo has width and height */}
           <div
-            className="text-2xl font-bold cursor-pointer"
+            className="text-xl font-bold cursor-pointer"
             onClick={() => router.push("/")}
           >
             BitCloud
