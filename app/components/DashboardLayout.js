@@ -76,6 +76,15 @@ export default function DashboardLayout({ children }) {
               <span>Fixed Capital</span>
             </span>
             <span
+              onClick={() => router.push("/mining")}
+              className={`block hover:bg-orange p-2 rounded cursor-pointer flex items-center space-x-2 ${
+                currentPath === "/mining" ? "bg-orange text-white" : ""
+              }`}
+            >
+              <FaHammer />
+              <span>Mining</span>
+            </span>
+            <span
               onClick={() => router.push("/transactionHistory")}
               className={`block hover:bg-orange p-2 rounded cursor-pointer flex items-center space-x-2 ${
                 currentPath === "/transactionHistory"
@@ -103,15 +112,6 @@ export default function DashboardLayout({ children }) {
             >
               <FaUsers />
               <span>Referrals</span>
-            </span>
-            <span
-              onClick={() => router.push("/mining")}
-              className={`block hover:bg-orange p-2 rounded cursor-pointer flex items-center space-x-2 ${
-                currentPath === "/mining" ? "bg-orange text-white" : ""
-              }`}
-            >
-              <FaHammer />
-              <span>Mining</span>
             </span>
           </nav>
         </aside>
