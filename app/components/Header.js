@@ -96,12 +96,12 @@ const Header = ({ children }) => {
             <Link href="/" className="hover:text-gray-400">
               Home
             </Link>
-            <Link href="/exchange" className="hover:text-gray-400">
+            {/* <Link href="/exchange" className="hover:text-gray-400">
               Exchange
             </Link>
             <Link href="/market" className="hover:text-gray-400">
               Market
-            </Link>
+            </Link> */}
           </nav>
 
           {/* Mobile Login & Sign Up */}
