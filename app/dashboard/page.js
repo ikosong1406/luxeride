@@ -5,12 +5,14 @@ import { FaBitcoin, FaEthereum } from "react-icons/fa";
 import { SiTether } from "react-icons/si";
 import { RiXrpFill } from "react-icons/ri";
 import { useRouter } from "next/navigation";
+import Notification from "../components/Notification";
 
 export default function Overview() {
   const router = useRouter();
 
   return (
     <DashboardLayout>
+      <Notification />
       <div className=" space-y-8">
         {/* Total Balance */}
         <div className="bg-black2 p-6 rounded-lg">

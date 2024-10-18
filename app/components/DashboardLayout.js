@@ -10,13 +10,13 @@ import {
   FaUser,
   FaUsers,
   FaHammer,
-} from "react-icons/fa"; // Importing icons
-import logo from "../images/logo.png"; // Adjust logo import
+} from "react-icons/fa"; // Ensure these are imported correctly
+import logo from "../images/logo.png"; // Ensure the logo is correctly imported
 
 export default function DashboardLayout({ children }) {
   const router = useRouter();
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const currentPath = router.pathname;
+  const currentPath = router.pathname; // Get current path for active link styling
 
   return (
     <div className="flex flex-col min-h-screen bg-gray-900 text-white">
@@ -31,7 +31,6 @@ export default function DashboardLayout({ children }) {
             className="lg:hidden p-2 bg-gray-700 rounded-md"
             onClick={() => setIsSidebarOpen(!isSidebarOpen)}
           >
-            {/* Hamburger icon for mobile */}
             <svg
               className="w-6 h-6"
               fill="none"
@@ -77,15 +76,6 @@ export default function DashboardLayout({ children }) {
               <span>Fixed Capital</span>
             </span>
             <span
-              onClick={() => router.push("/mining")}
-              className={`block hover:bg-orange p-2 rounded cursor-pointer flex items-center space-x-2 ${
-                currentPath === "/mining" ? "bg-orange text-white" : ""
-              }`}
-            >
-              <FaHammer />
-              <span>Mining</span>
-            </span>
-            <span
               onClick={() => router.push("/transactionHistory")}
               className={`block hover:bg-orange p-2 rounded cursor-pointer flex items-center space-x-2 ${
                 currentPath === "/transactionHistory"
@@ -113,6 +103,15 @@ export default function DashboardLayout({ children }) {
             >
               <FaUsers />
               <span>Referrals</span>
+            </span>
+            <span
+              onClick={() => router.push("/mining")}
+              className={`block hover:bg-orange p-2 rounded cursor-pointer flex items-center space-x-2 ${
+                currentPath === "/mining" ? "bg-orange text-white" : ""
+              }`}
+            >
+              <FaHammer />
+              <span>Mining</span>
             </span>
           </nav>
         </aside>
