@@ -14,9 +14,11 @@ module.exports = {
       },
     },
     colors: {
-      background: "#141317",
+      background: "#000000",
       bluey: "#3772FF",
       orange: "#ec8305",
+      green: "#00ff7f",
+      black2: "#272424",
     },
     screens: {
       sm: "640px",
