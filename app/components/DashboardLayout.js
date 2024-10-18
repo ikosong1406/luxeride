@@ -3,12 +3,20 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-import logo from "../images/logo.png"; // Adjust logo import as necessary
-// import userImage from "../images/user-image.png";
+import {
+  FaHome,
+  FaCoins,
+  FaHistory,
+  FaUser,
+  FaUsers,
+  FaHammer,
+} from "react-icons/fa"; // Importing icons
+import logo from "../images/logo.png"; // Adjust logo import
 
 export default function DashboardLayout({ children }) {
   const router = useRouter();
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const currentPath = router.pathname;
 
   return (
     <div className="flex flex-col min-h-screen bg-gray-900 text-white">
@@ -19,13 +27,6 @@ export default function DashboardLayout({ children }) {
           <h1 className="text-xl font-bold">BitCloud</h1>
         </div>
         <div className="flex items-center space-x-4">
-          {/* <Image
-            src={userImage}
-            alt="User"
-            width={40}
-            height={40}
-            className="rounded-full"
-          /> */}
           <button
             className="lg:hidden p-2 bg-gray-700 rounded-md"
             onClick={() => setIsSidebarOpen(!isSidebarOpen)}
@@ -59,33 +60,59 @@ export default function DashboardLayout({ children }) {
           <nav className="space-y-4 mt-20">
             <span
               onClick={() => router.push("/dashboard")}
-              className="block hover:bg-orange p-2 rounded cursor-pointer"
+              className={`block hover:bg-orange p-2 rounded cursor-pointer flex items-center space-x-2 ${
+                currentPath === "/dashboard" ? "bg-orange text-white" : ""
+              }`}
             >
-              Overview
+              <FaHome />
+              <span>Overview</span>
             </span>
             <span
               onClick={() => router.push("/fixedCapital")}
-              className="block hover:bg-orange p-2 rounded cursor-pointer"
+              className={`block hover:bg-orange p-2 rounded cursor-pointer flex items-center space-x-2 ${
+                currentPath === "/fixedCapital" ? "bg-orange text-white" : ""
+              }`}
             >
-              Fixed Capital
+              <FaCoins />
+              <span>Fixed Capital</span>
+            </span>
+            <span
+              onClick={() => router.push("/mining")}
+              className={`block hover:bg-orange p-2 rounded cursor-pointer flex items-center space-x-2 ${
+                currentPath === "/mining" ? "bg-orange text-white" : ""
+              }`}
+            >
+              <FaHammer />
+              <span>Mining</span>
             </span>
             <span
               onClick={() => router.push("/transactionHistory")}
-              className="block hover:bg-orange p-2 rounded cursor-pointer"
+              className={`block hover:bg-orange p-2 rounded cursor-pointer flex items-center space-x-2 ${
+                currentPath === "/transactionHistory"
+                  ? "bg-orange text-white"
+                  : ""
+              }`}
             >
-              Transaction History
+              <FaHistory />
+              <span>Transaction History</span>
             </span>
             <span
               onClick={() => router.push("/profile")}
-              className="block hover:bg-orange p-2 rounded cursor-pointer"
+              className={`block hover:bg-orange p-2 rounded cursor-pointer flex items-center space-x-2 ${
+                currentPath === "/profile" ? "bg-orange text-white" : ""
+              }`}
             >
-              Profile
+              <FaUser />
+              <span>Profile</span>
             </span>
             <span
               onClick={() => router.push("/referrals")}
-              className="block hover:bg-orange p-2 rounded cursor-pointer"
+              className={`block hover:bg-orange p-2 rounded cursor-pointer flex items-center space-x-2 ${
+                currentPath === "/referrals" ? "bg-orange text-white" : ""
+              }`}
             >
-              Referrals
+              <FaUsers />
+              <span>Referrals</span>
             </span>
           </nav>
         </aside>
