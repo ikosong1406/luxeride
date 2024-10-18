@@ -18,6 +18,7 @@ module.exports = {
       bluey: "#3772FF",
       orange: "#ec8305",
       green: "#00ff7f",
+      red: "#FF0000",
       black2: "#272424",
     },
     screens: {

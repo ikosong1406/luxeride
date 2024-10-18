@@ -104,15 +104,6 @@ export default function DashboardLayout({ children }) {
               <FaUser />
               <span>Profile</span>
             </span>
-            <span
-              onClick={() => router.push("/referrals")}
-              className={`block hover:bg-orange p-2 rounded cursor-pointer flex items-center space-x-2 ${
-                currentPath === "/referrals" ? "bg-orange text-white" : ""
-              }`}
-            >
-              <FaUsers />
-              <span>Referrals</span>
-            </span>
           </nav>
         </aside>
 
