@@ -6,6 +6,7 @@ import Image from "next/image";
 import coinIcon from "../images/logo.png"; // Adjust the import based on your asset location
 import { TbCoinFilled } from "react-icons/tb";
 import DashboardLayout from "../components/DashboardLayout";
+import Notification from "../components/Notification";
 
 export default function Mining() {
   const [balance, setBalance] = useState(0); // Wallet balance
@@ -27,6 +28,7 @@ export default function Mining() {
 
   return (
     <DashboardLayout>
+      <Notification />
       <div className="flex flex-col items-center min-h-screen text-white">
         {/* Wallet Balance Section */}
         <section className="bg-black2 w-full py-6 px-4 rounded-lg">

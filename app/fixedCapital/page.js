@@ -2,6 +2,7 @@
 "use client";
 import DashboardLayout from "../components/DashboardLayout";
 import { useState } from "react";
+import Notification from "../components/Notification";
 
 export default function FixedCapital() {
   const [amount, setAmount] = useState("");
@@ -31,6 +32,7 @@ export default function FixedCapital() {
 
   return (
     <DashboardLayout>
+      <Notification />
       <div className="py-6">
         {/* Fixed Capital Wallet Balance Section */}
         <section className="bg-black2 p-4 rounded-lg mb-6">

@@ -4,6 +4,7 @@ import { useState } from "react";
 import DashboardLayout from "../components/DashboardLayout";
 import { FaBitcoin, FaTether } from "react-icons/fa"; // Icons for Bitcoin and USDT
 // import Modal from "../components/Modal"; // Import modal component
+import Notification from "../components/Notification";
 
 export default function Withdrawal() {
   const [amount, setAmount] = useState("");
@@ -23,6 +24,7 @@ export default function Withdrawal() {
 
   return (
     <DashboardLayout>
+      <Notification />
       <div className="py-6">
         {/* Amount and Wallet Address Section */}
         <section className="mb-6">

@@ -38,7 +38,7 @@ export default function Notification() {
     <>
       {showNotification && (
         <div className="fixed bottom-4 right-4 bg-bluey text-white p-4 rounded-md shadow-lg z-50 transition-opacity duration-300">
-          {notification}
+          <p>{notification}</p>
         </div>
       )}
     </>

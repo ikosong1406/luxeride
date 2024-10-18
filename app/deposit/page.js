@@ -5,6 +5,7 @@ import DashboardLayout from "../components/DashboardLayout";
 import { FaBitcoin } from "react-icons/fa"; // Icons for Bitcoin and USDT
 import { SiTether } from "react-icons/si";
 import QRCode from "react-qr-code"; // You can install this package using `npm install react-qr-code`
+import Notification from "../components/Notification";
 
 export default function Deposit() {
   const [amount, setAmount] = useState("");
@@ -19,6 +20,7 @@ export default function Deposit() {
 
   return (
     <DashboardLayout>
+      <Notification />
       <div className="py-6">
         {/* Amount Selection Section */}
         <section className="mb-6">
