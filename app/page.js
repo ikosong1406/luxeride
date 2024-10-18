@@ -28,17 +28,6 @@ export default function Home() {
       <div className="px">
         {/* Intro Section */}
         <section className="relative bg-black text-white py-16 px-6 overflow-hidden">
-          {/* Background GIF */}
-          <div className="absolute top-0 left-0 w-full h-full z-0 pt-2">
-            <Image
-              src={gif} // Replace with your GIF path
-              alt="Background GIF"
-              layout="fill" // Cover the entire section
-              objectFit="cover" // Ensure it covers the area
-              quality={10} // Optional: Adjust quality as needed
-            />
-          </div>
-
           {/* Content Over the Video */}
           <div className="container mx-auto relative z-10 flex flex-col md:flex-row items-center justify-between">
             <div className="md:w-1/2">
@@ -92,16 +81,6 @@ export default function Home() {
         </section>
 
         <section className="relative bg-black text-white py-20 px-6 overflow-hidden">
-          {/* Background GIF */}
-          <div className="absolute top-0 left-0 w-full h-full z-0 pt-5">
-            <Image
-              src={gif} // Replace with your GIF path
-              alt="Background GIF"
-              layout="fill" // Cover the entire section
-              objectFit="cover" // Ensure it covers the area
-              quality={30} // Optional: Adjust quality as needed
-            />
-          </div>
           <div className="container mx-auto relative z-10 ">
             <h2 className="text-2xl font-bold text-center mb-8">
               Become a Crypto Trader in Seconds
