@@ -30,7 +30,7 @@ export default function Overview() {
         <div className="flex justify-center mt-6 space-x-4">
           <button
             className="bg-bluey text-white px-6 py-2 rounded-md"
-            onClick={() => router.push("/dashboard/deposit")}
+            onClick={() => router.push("/deposit")}
           >
             Deposit
           </button>
