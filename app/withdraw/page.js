@@ -28,15 +28,13 @@ export default function Withdrawal() {
       <div className="py-6">
         {/* Amount and Wallet Address Section */}
         <section className="mb-6">
-          <h1 className="text-2xl font-bold mb-4 text-center">
-            Withdraw Funds
-          </h1>
+          <h1 className="text-xl font-bold mb-4 text-center">Withdraw Funds</h1>
 
           {/* Coin Selection */}
           <select
             value={selectedCoin}
             onChange={(e) => setSelectedCoin(e.target.value)}
-            className="w-full p-2 border border-gray-500 rounded bg-gray-800 text-white mb-4 bg-background mt-4"
+            className="w-full p-2 border border-gray-500 rounded text-white mb-4 bg-background mt-4"
           >
             <option value="usdt">USDT (Tether)</option>
             <option value="bitcoin">Bitcoin (BTC)</option>

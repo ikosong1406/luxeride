@@ -31,10 +31,10 @@ export default function Deposit() {
                 key={amt}
                 onClick={() => setAmount(amt)}
                 className={`cursor-pointer p-4 bg-gray-800 text-center rounded-lg border ${
-                  amount === amt ? "border-blue-500" : "border-transparent"
+                  amount === amt ? "border-green" : "border-transparent"
                 } hover:border-blue-500`}
               >
-                <p className="text-xl font-bold">${amt}</p>
+                <p className="text-base font-bold">${amt}</p>
               </div>
             ))}
           </div>
@@ -49,7 +49,7 @@ export default function Deposit() {
 
         {/* Coin Selection Section */}
         <section className="mb-6">
-          <h1 className="text-xl font-bold mb-4">Select Coin to Deposit</h1>
+          <h1 className="text-base font-bold mb-4">Select Coin to Deposit</h1>
           <select
             value={selectedCoin}
             onChange={(e) => setSelectedCoin(e.target.value)}
