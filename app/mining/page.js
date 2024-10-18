@@ -4,6 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import DashboardLayout from "../components/DashboardLayout";
 import coinImage from "../images/logo.png"; // Your coin image
+import Notification from "../components/Notification";
 
 export default function Mining() {
   const [coinCount, setCoinCount] = useState(0);
@@ -16,6 +17,7 @@ export default function Mining() {
 
   return (
     <DashboardLayout>
+      <Notification />
       <div className="flex flex-col items-center justify-center min-h-screen bg-gray-900 text-white">
         <h1 className="text-3xl font-bold mb-6">Tap to Mine</h1>
         <div onClick={handleTap} className="cursor-pointer">
