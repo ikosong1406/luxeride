@@ -33,9 +33,9 @@ export default function FixedCapital() {
     <DashboardLayout>
       <div className="py-6">
         {/* Fixed Capital Wallet Balance Section */}
-        <section className="bg-gray-800 p-4 rounded-md mb-6 text-center">
-          <h2 className="text-2xl font-bold">Fixed Capital Wallet Balance</h2>
-          <p className="text-3xl mt-2">0 BTC</p>{" "}
+        <section className="bg-black2 p-4 rounded-lg mb-6">
+          <h2 className="text-xl font-bold">Fixed Capital Wallet Balance</h2>
+          <p className="text-2xl mt-2">0 USDT</p>{" "}
           {/* Update this to reflect actual balance */}
         </section>
 
@@ -47,14 +47,14 @@ export default function FixedCapital() {
             placeholder="Enter amount to lock"
             value={amount}
             onChange={(e) => setAmount(e.target.value)}
-            className="w-full p-2 mb-4 border border-gray-500 rounded"
+            className="w-full p-2 mb-4 border border-gray-500 rounded bg-background"
           />
           <div className="mb-4">
-            <label className="block mb-2">Choose Duration:</label>
+            <label className="block mb-2 bg-background">Choose Duration:</label>
             <select
               value={duration}
               onChange={(e) => setDuration(e.target.value)}
-              className="w-full p-2 border border-gray-500 rounded"
+              className="w-full p-2 border border-gray-500 rounded bg-background"
             >
               <option value="1 week">1 Week</option>
               <option value="1 month">1 Month</option>
