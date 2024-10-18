@@ -3,10 +3,12 @@
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useState } from "react"; // Import useState for form handling
-import axios from "axios"; // Import axios for API calls
 import logo from "../images/logo.png";
 import Header from "../components/Header";
+import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import BackendApi from "../components/BackendApi";
 
 const Signup = () => {
   const router = useRouter();
@@ -17,9 +19,26 @@ const Signup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
-    e.preventDefault(); // Prevent default form submission
+    e.preventDefault();
+
+    if (!firstname || !lastname || !email || !password || !confirmPassword) {
+      toast.error("Please fill out all fields");
+      return;
+    }
+
+    if (password !== confirmPassword) {
+      toast.error("Passwords do not match");
+      return;
+    }
+
+    const emailPattern = /^[a-zA-Z0-9._%+-]+@(gmail\.com|yahoo\.com)$/;
+    if (!emailPattern.test(email)) {
+      toast.error("Please enter a valid email address");
+      return;
+    }
 
     const data = {
       firstname: firstname,
@@ -29,19 +48,28 @@ const Signup = () => {
       role: "user",
     };
 
-    try {
-      // Make the API call with individual values
-      const response = await axios.post(
-        "https://bitcloudbackend.onrender.com/register",
-        data
-      );
+    setLoading(true);
 
-      // Show success notification
-      toast.success(response.data.data);
+    try {
+      const response = await axios.post(`${BackendApi}/register`, data);
+      if (response.data.status === "ok") {
+        toast.success(response.data.data);
+        setFirstname("");
+        setLastname("");
+        setEmail("");
+        setPassword("");
+        setConfirmPassword("");
+      } else {
+        toast.error(response.data.data);
+      }
     } catch (error) {
-      console.error("Error during registration:", error);
-      // Show error notification
-      toast.error(error.response.data.data || "Registration failed");
+      if (error.response) {
+        toast.error(error.response.data.data);
+      } else {
+        toast.error("Registration error");
+      }
+    } finally {
+      setLoading(false); // Stop loading
     }
   };
 
@@ -106,8 +134,9 @@ const Signup = () => {
               <button
                 type="submit"
                 className="w-full p-3 bg-bluey rounded-lg text-white font-bold"
+                disabled={loading}
               >
-                Sign Up
+                {loading ? "Registering..." : "Register"}
               </button>
             </form>
             <p className="text-gray-400 mt-6 text-center text-sm">

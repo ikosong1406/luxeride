@@ -5,25 +5,54 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import logo from "../images/logo.png";
 import Header from "../components/Header";
+import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import BackendApi from "../components/BackendApi";
+import { storeUserToken } from "../components/storage";
 
 const Login = () => {
   const router = useRouter();
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  const handleLogin = () => {
-    setIsLoggedIn(true);
-    router.push("/dashboard");
+  const handleLogin = async () => {
+    // e.preventDefault();
+    setLoading(true); // Start loading
+
+    const emailPattern = /^[a-zA-Z0-9._%+-]+@(gmail\.com|yahoo\.com)$/;
+    if (!emailPattern.test(email)) {
+      toast.error("Please enter a valid email address");
+      setLoading(false); // Stop loading if email is invalid
+      return;
+    }
+
+    const userData = {
+      email,
+      password,
+    };
+
+    setLoading(true);
+    try {
+      const response = await axios.post(`${BackendApi}/login`, userData);
+      const { token } = response.data;
+      storeUserToken(token);
+      router.push("/dashboard");
+    } catch (error) {
+      if (error.response) {
+        toast.error(error.response.data.data);
+      } else {
+        toast.error("Login error");
+      }
+      setLoading(false); // Stop loading after error
+    }
   };
-
-  if (isLoggedIn) {
-    return <p>Redirecting...</p>;
-  }
 
   return (
     <Header>
       <div className="min-h-screen flex flex-col lg:flex-row bg-background">
+        <ToastContainer />
         {/* Logo and Sign Up Promo Section */}
         <div className="hidden lg:block lg:w-1/2">
           <Image
@@ -63,8 +92,9 @@ const Login = () => {
               <button
                 onClick={handleLogin}
                 className="w-full p-3 bg-bluey rounded hover:bg-blue-500"
+                disabled={loading}
               >
-                Login
+                {loading ? "Logging in..." : "Login"}
               </button>
             </div>
             <p className="text-gray-400 mt-6 text-center text-sm">
