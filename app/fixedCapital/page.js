@@ -11,9 +11,9 @@ export default function FixedCapital() {
 
   // Example rates per duration
   const rates = {
-    "1 week": 0.02, // 2% for 1 week
-    "1 month": 0.08, // 8% for 1 month
-    "3 months": 0.25, // 25% for 3 months
+    "1 week": 0.5, // 2% for 1 week
+    "1 month": 0.5, // 8% for 1 month
+    "3 months": 1, // 25% for 3 months
   };
 
   // Calculate profit and total payback
@@ -63,7 +63,7 @@ export default function FixedCapital() {
           </div>
           <button
             onClick={calculateReturns}
-            className="w-full p-2 bg-blue-500 hover:bg-blue-600 text-white rounded"
+            className="w-full p-2 bg-bluey text-white rounded-lg"
           >
             Calculate Returns
           </button>
