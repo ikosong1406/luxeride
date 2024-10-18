@@ -28,7 +28,7 @@ export default function Notification() {
       setTimeout(() => {
         setShowNotification(false);
       }, 10000);
-    }, 60000); // 2 minutes
+    }, 30000); // 2 minutes
 
     // Cleanup interval on component unmount
     return () => clearInterval(notificationInterval);
