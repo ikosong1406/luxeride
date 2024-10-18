@@ -36,7 +36,7 @@ export default function Overview() {
           </button>
           <button
             className="px-4 py-2 bg-transparent hover:bg-bluey rounded-lg border"
-            onClick={() => router.push("/dashboard/withdraw")}
+            onClick={() => router.push("/withdraw")}
           >
             Withdraw
           </button>

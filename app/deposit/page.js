@@ -75,7 +75,7 @@ export default function Deposit() {
           </h2>
           <QRCode
             value={walletAddresses[selectedCoin]}
-            size={150}
+            size={200}
             className="mx-auto mb-4 border-2"
           />
           <p className="mb-4 text-lg">{walletAddresses[selectedCoin]}</p>
