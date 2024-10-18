@@ -43,7 +43,6 @@ export default function FixedCapital() {
 
         {/* Amount Locking Section */}
         <section className="bg-gray-700 p-4 rounded-md mb-6">
-          <h3 className="text-xl font-semibold mb-4">Lock Your Amount</h3>
           <input
             type="number"
             placeholder="Enter amount to lock"
@@ -67,19 +66,18 @@ export default function FixedCapital() {
             onClick={calculateReturns}
             className="w-full p-2 bg-bluey text-white rounded-lg"
           >
-            Calculate Returns
+            Calculate Profit
           </button>
         </section>
 
         {/* Profit and Total Payback Section */}
         <section className="bg-gray-700 p-4 rounded-md mb-6">
-          <h3 className="text-xl font-semibold mb-4">Estimated Returns</h3>
           <p>
-            Profit: <span className="font-bold">{profit.toFixed(2)} BTC</span>
+            Profit: <span className="font-bold">{profit.toFixed(2)} USDT</span>
           </p>
-          <p>
+          <p className="mt-8">
             Total Payback:{" "}
-            <span className="font-bold">{totalPayback.toFixed(2)} BTC</span>
+            <span className="font-bold">{totalPayback.toFixed(2)} USDT</span>
           </p>
         </section>
 
@@ -100,9 +98,9 @@ export default function FixedCapital() {
             <tbody>
               {/* Example Transaction Row */}
               <tr>
-                <td className="py-2 border-b">1,000 BTC</td>
+                <td className="py-2 border-b">1,000 USDT</td>
                 <td className="py-2 border-b">30</td>
-                <td className="py-2 border-b">80 BTC</td>
+                <td className="py-2 border-b">80 USDT</td>
                 <td className="py-2 border-b">Active</td>
               </tr>
               {/* Additional rows can be dynamically generated here */}

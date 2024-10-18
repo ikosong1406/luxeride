@@ -4,6 +4,7 @@ import DashboardLayout from "../components/DashboardLayout";
 import Image from "next/image"; // Assuming you are using next/image for the profile picture
 import { useState } from "react";
 import user from "../images/logo.png";
+import Notification from "../components/Notification";
 
 export default function Profile() {
   const [newPassword, setNewPassword] = useState("");
@@ -27,7 +28,8 @@ export default function Profile() {
 
   return (
     <DashboardLayout>
-      <h1 className="text-2xl font-bold mb-6">Profile</h1>
+      <Notification />
+      <h1 className="text-xl font-bold mb-6">Profile</h1>
 
       <div className="flex flex-col items-center space-y-4">
         {/* User profile picture */}

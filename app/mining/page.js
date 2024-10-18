@@ -52,8 +52,8 @@ export default function Mining() {
               tapsAvailable === 0 ? "opacity-50" : ""
             }`}
             style={{
-              width: tapsAvailable === 0 ? "300px" : "300px", // Example of dynamic resizing
-              height: tapsAvailable === 0 ? "300px" : "300px",
+              width: tapsAvailable === 0 ? "250px" : "250px", // Example of dynamic resizing
+              height: tapsAvailable === 0 ? "250px" : "250px",
               borderRadius: "50%",
             }}
             onClick={handleTap}
@@ -61,8 +61,8 @@ export default function Mining() {
             <Image
               src={coinIcon}
               alt="Coin Icon"
-              width={500}
-              height={500}
+              width={300}
+              height={300}
               className="cursor-pointer"
             />
           </div>

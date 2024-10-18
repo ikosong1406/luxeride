@@ -30,9 +30,9 @@ export default function TransactionHistory() {
   return (
     <DashboardLayout>
       <Notification />
-      <h1 className="text-2xl font-bold mb-6">Transaction History</h1>
+      <h1 className="text-xl font-bold mb-6">Transaction History</h1>
 
-      <div className="bg-gray-800 p-4 rounded-md">
+      <div className="bg-gray-800 rounded-md">
         <table className="w-full text-left">
           <thead>
             <tr>
