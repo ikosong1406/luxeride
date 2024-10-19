@@ -32,7 +32,7 @@ export default function TransactionHistory() {
       <Notification />
       <h1 className="text-xl font-bold mb-6">Transaction History</h1>
 
-      <div className="bg-gray-800 rounded-md">
+      {/* <div className="bg-gray-800 rounded-md">
         <table className="w-full text-left">
           <thead>
             <tr>
@@ -58,7 +58,10 @@ export default function TransactionHistory() {
             ))}
           </tbody>
         </table>
-      </div>
+      </div> */}
+      <p style={{ color: "white", textAlign: "center", fontSize: 16 }}>
+        No transactions
+      </p>
     </DashboardLayout>
   );
 }

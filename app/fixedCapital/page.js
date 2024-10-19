@@ -1,14 +1,64 @@
 // pages/dashboard/fixed-capital.js
 "use client";
 import DashboardLayout from "../components/DashboardLayout";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Notification from "../components/Notification";
+import axios from "axios";
+import BackendApi from "../components/BackendApi";
+import { getUserToken } from "../components/storage";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function FixedCapital() {
   const [amount, setAmount] = useState("");
   const [duration, setDuration] = useState("1 week"); // Default duration
   const [profit, setProfit] = useState(0);
   const [totalPayback, setTotalPayback] = useState(0);
+  const [userData, setUserData] = useState([]);
+  const [refreshing, setRefreshing] = useState(false);
+  const [token, setToken] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    setIsLoading(true);
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 1000);
+  }, []);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const userToken = await getUserToken();
+        setToken(userToken);
+      } catch (error) {
+        console.error("Error retrieving token:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  const getData = async () => {
+    const data = { token };
+    try {
+      const response = await axios.post(`${BackendApi}/userdata`, data);
+      setUserData(response.data.data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+
+  useEffect(() => {
+    if (token) {
+      const interval = setInterval(() => {
+        setRefreshing(true);
+        getData();
+      }, 1000);
+
+      return () => clearInterval(interval);
+    }
+  }, [token]);
 
   // Example rates per duration
   const rates = {
@@ -30,14 +80,39 @@ export default function FixedCapital() {
     }
   };
 
+  const handleContinueClick = async () => {
+    const amountValue = parseFloat(amount);
+    if (userData.balance < amountValue) {
+      toast.error("Insufficient balance");
+      return;
+    }
+
+    const data = {
+      userId: userData._id,
+      amount: amountValue,
+      days: 30,
+      rate: 0.5,
+    };
+
+    try {
+      const response = await axios.post(`${BackendApi}/staking`, data);
+      toast.success("Your Fixed Capital has been done safely.");
+      setAmount("");
+      setModalVisible(false); // Hide the modal on successful staking
+    } catch (error) {
+      toast.error("Staking Error");
+    }
+  };
+
   return (
     <DashboardLayout>
+      <ToastContainer />
       <Notification />
       <div className="py-6">
         {/* Fixed Capital Wallet Balance Section */}
         <section className="bg-black2 p-4 rounded-lg mb-6">
           <h2 className="text-xl font-bold">Fixed Capital Wallet Balance</h2>
-          <p className="text-2xl mt-2">0 USDT</p>{" "}
+          <p className="text-2xl mt-2">{userData.stakingBalance} USDT</p>{" "}
           {/* Update this to reflect actual balance */}
         </section>
 
@@ -80,6 +155,13 @@ export default function FixedCapital() {
             <span className="font-bold">{totalPayback.toFixed(2)} USDT</span>
           </p>
         </section>
+
+        <button
+          onClick={handleContinueClick}
+          className="w-full p-2 bg-bluey text-white rounded-lg"
+        >
+          Continue
+        </button>
 
         {/* Fixed Capital Transactions Table */}
         <section className="bg-gray-700 p-4 rounded-md">

@@ -1,11 +1,16 @@
 // pages/dashboard/deposit.js
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import DashboardLayout from "../components/DashboardLayout";
 import { FaBitcoin } from "react-icons/fa"; // Icons for Bitcoin and USDT
 import { SiTether } from "react-icons/si";
 import QRCode from "react-qr-code"; // You can install this package using `npm install react-qr-code`
 import Notification from "../components/Notification";
+import axios from "axios";
+import BackendApi from "../components/BackendApi";
+import { getUserToken } from "../components/storage";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function Deposit() {
   const [amount, setAmount] = useState("");
@@ -13,6 +18,72 @@ export default function Deposit() {
   const walletAddresses = {
     usdt: "TETHER-WALLET-ADDRESS-HERE",
     bitcoin: "BITCOIN-WALLET-ADDRESS-HERE",
+  };
+  const [userData, setUserData] = useState([]);
+  const [refreshing, setRefreshing] = useState(false);
+  const [token, setToken] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    setIsLoading(true);
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 1000);
+  }, []);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const userToken = await getUserToken();
+        setToken(userToken);
+        // console.log(token);
+      } catch (error) {
+        console.error("Error retrieving token:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  const getData = async () => {
+    const data = {
+      token,
+    };
+    try {
+      // console.log(token);
+      const response = await axios.post(`${BackendApi}/userdata`, data);
+      setUserData(response.data.data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+
+  useEffect(() => {
+    if (token) {
+      const interval = setInterval(() => {
+        setRefreshing(true);
+        getData();
+      }, 1000);
+
+      return () => clearInterval(interval);
+    }
+  }, [token]);
+
+  const handleConfirmClick = async () => {
+    const data = {
+      userId: userData._id,
+      name: userData.firstname,
+      lname: userData.lastname,
+      amount,
+      type: "deposit",
+    };
+
+    try {
+      const response = await axios.post(`${BackendApi}/transaction`, data);
+      toast.success("Your deposit will be confirmed ");
+    } catch (error) {
+      toast.error("Deposit error", error);
+    }
   };
 
   // List of amounts to display
@@ -81,7 +152,10 @@ export default function Deposit() {
             className="mx-auto mb-4 border-2"
           />
           <p className="mb-4 text-lg">{walletAddresses[selectedCoin]}</p>
-          <button className="p-2 bg-bluey text-white rounded-lg mt-10">
+          <button
+            className="p-2 bg-bluey text-white rounded-lg mt-10"
+            onClick={handleConfirmClick}
+          >
             I have made the deposit
           </button>
         </section>

@@ -1,14 +1,86 @@
 "use client";
 
 import DashboardLayout from "../components/DashboardLayout";
+import { useEffect, useState } from "react";
 import { FaBitcoin, FaEthereum } from "react-icons/fa";
 import { SiTether } from "react-icons/si";
 import { RiXrpFill } from "react-icons/ri";
 import { useRouter } from "next/navigation";
 import Notification from "../components/Notification";
+import axios from "axios";
+import { getUserToken } from "../components/storage";
+import BackendApi from "../components/BackendApi";
 
 export default function Overview() {
   const router = useRouter();
+  const [userData, setUserData] = useState({
+    bitcoin: 0,
+    ethereum: 0,
+    balance: 0,
+    firstname: "",
+    lastname: "",
+  });
+  const [refreshing, setRefreshing] = useState(false);
+  const [token, setToken] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    setIsLoading(true);
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 1000);
+  }, []);
+
+  const fetchData = async () => {
+    try {
+      const userToken = await getUserToken();
+      setToken(userToken);
+      // console.log(token);
+    } catch (error) {
+      console.error("Error retrieving token:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const getData = async () => {
+    const data = { token };
+    try {
+      const response = await axios.post(`${BackendApi}/userdata`, data);
+      const fetchedData = response.data.data;
+
+      // Set default values if the fetched data is zero
+      const updatedData = {
+        bitcoin: fetchedData.bitcoin || 0,
+        ethereum: fetchedData.ethereum || 0,
+        balance: fetchedData.balance || 0,
+        firstname: fetchedData.firstname || "",
+        lastname: fetchedData.lastname || "",
+      };
+
+      setUserData(updatedData);
+      setLoading(false);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    if (token) {
+      const interval = setInterval(() => {
+        setRefreshing(true);
+        getData();
+      }, 1000);
+
+      return () => clearInterval(interval);
+    }
+  }, [token]);
+
+  const roundedValue = (userData.balance * 0.000015).toFixed(6);
 
   return (
     <DashboardLayout>
@@ -19,12 +91,14 @@ export default function Overview() {
           <h1 className="text-2xl font-bold">Overview</h1>
           <p className="text-lg text-gray-400">Total Balance</p>
           <div className="flex">
-            <h2 className="text-4xl font-bold text-white mt-2">0.052</h2>
+            <h2 className="text-4xl font-bold text-white mt-2">
+              {roundedValue}
+            </h2>
             <span className="text-green-500 px-3 py-1 bg-green rounded-md ml-2 h-8 mt-4">
               BTC
             </span>
           </div>
-          <p className="text-gray-400 mt-2">~ $1400</p>
+          <p className="text-gray-400 mt-2">~ ${userData.balance}</p>
         </div>
         {/* Deposit and Withdrawal Buttons */}
         <div className="flex justify-center mt-6 space-x-4">
@@ -61,8 +135,8 @@ export default function Overview() {
                   </div>
                 </td>
                 <td className="py-4">
-                  <p className="text-white">1200</p>
-                  <p className="text-gray-400 text-sm">~ $1200</p>
+                  <p className="text-white">{userData.balance}</p>
+                  <p className="text-gray-400 text-sm">~ ${userData.balance}</p>
                 </td>
               </tr>
               <tr className="border-t border-gray-700">
@@ -74,8 +148,8 @@ export default function Overview() {
                   </div>
                 </td>
                 <td className="py-4">
-                  <p className="text-white">0.052</p>
-                  <p className="text-gray-400 text-sm">~ $1400</p>
+                  <p className="text-white">{userData.bitcoin}</p>
+                  <p className="text-gray-400 text-sm">~ $0</p>
                 </td>
               </tr>
               <tr className="border-t border-gray-700">
@@ -87,8 +161,8 @@ export default function Overview() {
                   </div>
                 </td>
                 <td className="py-4">
-                  <p className="text-white">1.4</p>
-                  <p className="text-gray-400 text-sm">~ $3500</p>
+                  <p className="text-white">{userData.ethereum}</p>
+                  <p className="text-gray-400 text-sm">~ $0</p>
                 </td>
               </tr>
               <tr className="border-t border-gray-700">
@@ -100,8 +174,8 @@ export default function Overview() {
                   </div>
                 </td>
                 <td className="py-4">
-                  <p className="text-white">3000</p>
-                  <p className="text-gray-400 text-sm">~ $1500</p>
+                  <p className="text-white">0</p>
+                  <p className="text-gray-400 text-sm">~ $0</p>
                 </td>
               </tr>
             </tbody>
