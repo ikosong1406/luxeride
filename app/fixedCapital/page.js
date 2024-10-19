@@ -139,7 +139,7 @@ export default function FixedCapital() {
           </div>
           <button
             onClick={calculateReturns}
-            className="w-full p-2 bg-bluey text-white rounded-lg"
+            className="w-full p-2 bg-green text-white rounded-lg"
           >
             Calculate Profit
           </button>
