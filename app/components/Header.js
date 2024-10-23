@@ -6,6 +6,7 @@ import logo from "../images/logo.png";
 import Image from "next/image";
 import { useState } from "react";
 import Link from "next/link";
+import Footer from "./Footer";
 
 const Header = ({ children }) => {
   const router = useRouter();
@@ -16,17 +17,17 @@ const Header = ({ children }) => {
   };
 
   return (
-    <header className="bg-background text-white p-4 border-b">
-      <div className="container mx-auto flex justify-between items-center">
+    <header className="bg-blue text-white border-b">
+      <div className="container mx-auto flex justify-between items-center p-6">
         {/* Logo */}
-        <div className="flex justify-between items-center w-32">
+        <div className="flex justify-between items-center w-36">
           <Image src={logo} alt="Logo" width={30} height={30} />{" "}
           {/* Ensure logo has width and height */}
           <div
             className="text-xl font-bold cursor-pointer"
             onClick={() => router.push("/")}
           >
-            BitCloud
+            LuxeRide
           </div>
         </div>
 
@@ -36,19 +37,25 @@ const Header = ({ children }) => {
             onClick={() => router.push("/")}
             className="hover:text-gray-400 cursor-pointer"
           >
-            Home
+            About Us
           </span>
           <span
             onClick={() => router.push("/exchange")}
             className="hover:text-gray-400 cursor-pointer"
           >
-            Exchange
+            Car Rental
           </span>
           <span
             onClick={() => router.push("/market")}
             className="hover:text-gray-400 cursor-pointer"
           >
-            Market
+            FAQ
+          </span>
+          <span
+            onClick={() => router.push("/market")}
+            className="hover:text-gray-400 cursor-pointer"
+          >
+            Contact Us
           </span>
         </nav>
 
@@ -56,7 +63,7 @@ const Header = ({ children }) => {
         <div className="hidden md:flex space-x-4">
           <button
             onClick={() => router.push("/login")}
-            className="px-4 py-2 bg-bluey rounded-lg"
+            className="px-4 py-2 bg-gold rounded-lg"
           >
             Login
           </button>
@@ -94,21 +101,24 @@ const Header = ({ children }) => {
         <div className="md:hidden bg-gray-700 text-white p-4">
           <nav className="flex flex-col space-y-4">
             <Link href="/" className="hover:text-gray-400">
-              Home
+              About Us
             </Link>
-            {/* <Link href="/exchange" className="hover:text-gray-400">
-              Exchange
+            <Link href="/exchange" className="hover:text-gray-400">
+              Car Rental
             </Link>
             <Link href="/market" className="hover:text-gray-400">
-              Market
-            </Link> */}
+              FAQ
+            </Link>
+            <Link href="/market" className="hover:text-gray-400">
+              Contact Us
+            </Link>
           </nav>
 
           {/* Mobile Login & Sign Up */}
           <div className="flex flex-col space-y-4 mt-4">
             <button
               onClick={() => router.push("/login")}
-              className="px-4 py-2 bg-bluey rounded-lg"
+              className="px-4 py-2 bg-gold rounded-lg"
             >
               Login
             </button>
@@ -122,6 +132,7 @@ const Header = ({ children }) => {
         </div>
       )}
       <main>{children}</main>
+      <Footer />
     </header>
   );
 };

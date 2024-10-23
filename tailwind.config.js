@@ -14,7 +14,10 @@ module.exports = {
       },
     },
     colors: {
-      background: "#000000",
+      black: "#000000",
+      white: "#ffff",
+      blue: "#1a1d23",
+      gold: "#ddbf14",
       bluey: "#3772FF",
       orange: "#ec8305",
       green: "#00ff7f",

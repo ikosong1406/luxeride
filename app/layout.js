@@ -1,15 +1,15 @@
 // layout.js
 
-import { Inter } from "next/font/google";
+import { Montserrat } from "next/font/google";
 import "./globals.css";
 import Header from "./components/Header";
 import DashboardLayout from "./components/DashboardLayout"; // For logged-in users
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Montserrat({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "BitCloud",
-  description: "Legendary crypto asset exchange",
+  title: "LuxeRide",
+  description: "Drive Your Investment",
 };
 
 export default function RootLayout({ children }) {

@@ -51,7 +51,7 @@ const Login = () => {
 
   return (
     <Header>
-      <div className="min-h-screen flex flex-col lg:flex-row bg-background">
+      <div className="min-h-screen flex flex-col lg:flex-row">
         <ToastContainer />
         {/* Logo and Sign Up Promo Section */}
         <div className="hidden lg:block lg:w-1/2">
@@ -68,7 +68,7 @@ const Login = () => {
         <div className="lg:w-1/2 flex flex-col items-center justify-center py-16 px-8 mt-28">
           <div className="w-full max-w-md">
             <h2 className="text-2xl font-semibold text-center mb-6">
-              Sign in to BitCloud
+              Sign in to LuxeRide
             </h2>
             <p className="text-gray-400 text-center mb-8">
               Please ensure you are visiting the correct URL
@@ -91,7 +91,7 @@ const Login = () => {
               />
               <button
                 onClick={handleLogin}
-                className="w-full p-3 bg-bluey rounded hover:bg-blue-500"
+                className="w-full p-3 bg-gold rounded hover:bg-blue-500"
                 disabled={loading}
               >
                 {loading ? "Logging in..." : "Login"}
@@ -100,7 +100,7 @@ const Login = () => {
             <p className="text-gray-400 mt-6 text-center text-sm">
               Don't have an account?
               <span
-                className="text-orange cursor-pointer ml-2"
+                className="text-gold cursor-pointer ml-2"
                 onClick={() => router.push("/signup")}
               >
                 Create an account

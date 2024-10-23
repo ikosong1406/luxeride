@@ -92,7 +92,7 @@ const Signup = () => {
         <div className="lg:w-1/2 flex flex-col items-center justify-center py-16 px-8 mt-16">
           <div className="w-full max-w-md">
             <h2 className="text-2xl font-semibold text-center mb-6">
-              Create a BitCloud Account
+              Create a LuxeRide Account
             </h2>
 
             <form className="mt-12" onSubmit={handleSubmit}>
@@ -133,7 +133,7 @@ const Signup = () => {
               />
               <button
                 type="submit"
-                className="w-full p-3 bg-bluey rounded-lg text-white font-bold"
+                className="w-full p-3 bg-gold rounded-lg text-white font-bold"
                 disabled={loading}
               >
                 {loading ? "Registering..." : "Register"}
@@ -142,7 +142,7 @@ const Signup = () => {
             <p className="text-gray-400 mt-6 text-center text-sm">
               Already have an account?
               <span
-                className="text-orange cursor-pointer ml-2"
+                className="text-gold cursor-pointer ml-2"
                 onClick={() => router.push("/login")}
               >
                 Sign in here

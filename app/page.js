@@ -1,197 +1,194 @@
-"use client";
-
+import React from "react";
 import Image from "next/image";
-import Link from "next/link";
-import cards from "./images/cards.png";
-import gif from "./images/gif.gif";
-import { useRouter } from "next/navigation";
 import Header from "./components/Header";
-import { useEffect } from "react";
-import TradingViewWidget from "./components/TradingViewWidget";
-import TradingViewTop10 from "./components/TradingViewTop10";
-import pic1 from "./images/pic1.png";
-import pic2 from "./images/pic2.png";
-import pic3 from "./images/pic3.png";
-import mobile from "./images/mobile.png";
+import cargif from "./images/cargif.gif";
+import client from "./images/client.jpeg";
+import car1 from "./images/car1.jpeg";
+import car2 from "./images/car2.jpeg";
+import car3 from "./images/car3.jpeg";
+import car4 from "./images/car4.jpeg";
+import car5 from "./images/car5.jpeg";
+import world from "./images/world.jpeg";
 
-export default function Home() {
-  const router = useRouter();
-  const symbols = [
-    "BINANCE:BTCUSDT", // Bitcoin
-    "BINANCE:ETHUSDT", // Ethereum
-    "BINANCE:BNBUSDT", // BNB
-    "BINANCE:XRPUSDT", // Ripple
-  ];
-
+export default function HomePage() {
   return (
     <Header>
-      <div className="px">
-        {/* Intro Section */}
-        <section className="relative bg-black text-white py-16 px-6 overflow-hidden">
-          {/* Content Over the Video */}
-          <div className="container mx-auto relative z-10 flex flex-col md:flex-row items-center justify-between">
-            <div className="md:w-1/2">
-              <h1 className="text-3xl font-bold mb-6">
-                Buy & sell crypto in minutes
-              </h1>
-              <p className="mb-6 text-base">
-                Trade your favorite crypto assets with ease on the most secure
-                and fast-growing exchange platform.
-              </p>
-              <button
-                onClick={() => router.push("/login")}
-                className="px-4 py-2 bg-bluey rounded-lg"
-              >
-                Get Started
-              </button>
+      <div className="bg-white">
+        {/* Section 1: Video background with overlay and call to action */}
+        <section className="relative h-96">
+          <Image
+            src={cargif}
+            alt="Background GIF"
+            className="absolute top-0 left-0 w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-black bg-opacity-70 flex flex-col justify-center items-center text-center text-white p-8">
+            <h1 className="text-2xl font-bold mb-4">
+              Drive Your Dream, Invest in Luxury
+            </h1>
+            <p className="text-base mb-6">
+              Experience the thrill of luxury car rentals or invest in the cars
+              you love for a chance to earn
+            </p>
+            <button className="bg-gold text-white font-bold py-3 px-6 rounded-lg">
+              Start Renting or Investing Today
+            </button>
+          </div>
+        </section>
+
+        {/* Section 2: Write-up and cards, client pictures */}
+        <section className="py-16 px-8 flex flex-col md:flex-row">
+          <div className="flex-1">
+            <h2 className="text-xl font-bold mb-4 text-black">
+              Building Wealth & Luxury on Wheels
+            </h2>
+            <div className="grid grid-cols-2 gap-6">
+              <div className="bg-gray-100 p-8 rounded-lg shadow-md">
+                <h3 className="text-2xl font-bold text-bluey">1,000+</h3>
+                <p className="text-gray-600 text-black">Customers</p>
+              </div>
+              <div className="bg-gray-100 p-8 rounded-lg shadow-md">
+                <h3 className="text-2xl font-bold text-bluey">500+</h3>
+                <p className="text-gray-600 text-black">
+                  Successful Investments
+                </p>
+              </div>
+              <div className="bg-gray-100 p-8 rounded-lg shadow-md">
+                <h3 className="text-2xl font-bold text-bluey">200+</h3>
+                <p className="text-gray-600 text-black">
+                  Luxury Cars Available
+                </p>
+              </div>
+              <div className="bg-gray-100 p-8 rounded-lg shadow-md col">
+                <h3 className="text-2xl font-bold text-bluey">10M+</h3>
+                <p className="text-gray-600 text-black">
+                  Dollars Generated in Profit
+                </p>
+              </div>
             </div>
-            <div className="md:w-1/2">
-              <Image
-                src={cards}
-                alt="Crypto exchange platform"
-                layout="responsive"
-                width={500} // Set the original width
-                height={200} // Set the original height
+          </div>
+
+          <div className="flex-1 mt-12 md:mt-0 md:ml-16">
+            <h2 className="text-xl font-bold mb-4 text-black">
+              Partnered with the World's Finest
+            </h2>
+            <p className="text-base mb-8 text-black">
+              Top-notch luxury brands trust us to deliver high-quality service
+              and investment opportunities.
+            </p>
+
+            <Image
+              src={client}
+              alt="Client 1"
+              className="w-full h-96 md:w-96 rounded-lg"
+            />
+          </div>
+        </section>
+
+        {/* Section 3: Two parts with text and images */}
+        <section className="mb-8 px-8 flex flex-col md:flex-row">
+          <div className="flex-1">
+            <h2 className="text-xl font-bold mb-4 text-black">Our Vision</h2>
+            <p className="text-base mb-6 text-black">Luxury for All</p>
+            <Image
+              src={car1}
+              alt="Vision"
+              className="w-full h-80 md:h-12 rounded-lg"
+            />
+          </div>
+
+          <div className="flex-1 mt-12 md:mt-0 md:ml-16">
+            <h2 className="text-3xl font-bold mb-4 text-black">Our Mission</h2>
+            <p className="text-base mb-6 text-black">Empowering You to Earn</p>
+            <img
+              src="/path-to-mission.jpg"
+              alt="Mission"
+              className="w-full h-auto rounded-lg mb-6"
+            />
+            <div className="flex">
+              <img
+                src="/path-to-picture1.jpg"
+                alt="Mission Picture 1"
+                className="w-1/2 h-auto rounded-lg mr-2"
+              />
+              <img
+                src="/path-to-picture2.jpg"
+                alt="Mission Picture 2"
+                className="w-1/2 h-auto rounded-lg ml-2"
               />
             </div>
           </div>
         </section>
 
-        {/* Top 4 Cryptos Section */}
-        <section className="bg-gray-900 text-white py-16 px-6">
-          <div className="container mx-auto">
-            <div className="flex flex-col md:flex-row md:space-x-6 space-y-6 md:space-y-0">
-              {symbols.map((symbol, idx) => (
-                <div key={idx} className="flex-1">
-                  <TradingViewWidget symbol={symbol} />
-                </div>
-              ))}
-            </div>
+        {/* Section 4: Picture background with overlay */}
+        <section className="relative h-96">
+          <Image
+            src={world}
+            alt="Background"
+            className="absolute top-0 left-0 w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-black bg-opacity-70 flex flex-col justify-center items-center text-center text-white p-8">
+            <h2 className="text-2xl font-bold mb-4">Luxury Meets Investment</h2>
+            <p className="text-base mb-6">
+              Join us in revolutionizing the way people experience and profit
+              from luxury cars. Rent today, invest tomorrow.
+            </p>
           </div>
         </section>
 
-        {/* Top 10 Cryptos with Charts */}
-        <section className="bg-background text-white py-16 px-6">
-          <div className="container mx-auto">
-            <h2 className="text-2xl font-bold text-center mb-8">
-              Market Trend
-            </h2>
-            <TradingViewTop10 />
-          </div>
-        </section>
-
-        <section className="relative bg-black text-white py-20 px-6 overflow-hidden">
-          <div className="container mx-auto relative z-10 ">
-            <h2 className="text-2xl font-bold text-center mb-8">
-              Become a Crypto Trader in Seconds
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="bg-gray-800 p-6 rounded-lg text-center">
-                <Image
-                  src={pic1}
-                  alt="Step 1"
-                  layout="responsive"
-                  width={50}
-                  height={50}
-                />
-                <h3 className="text-xl font-bold my-4">Buy & Sell Crypto</h3>
-                <p>
-                  We realize ideas from simple to complex, everything becomes
-                  easy to use and reach the most potential customers.
-                </p>
-              </div>
-              <div className="bg-gray-800 p-6 rounded-lg text-center">
-                <Image
-                  src={pic2}
-                  alt="Step 2"
-                  layout="responsive"
-                  width={50}
-                  height={50}
-                />
-                <h3 className="text-xl font-bold my-4">Trade Assets</h3>
-                <p>
-                  We realize ideas from simple to complex, everything becomes
-                  easy to use and reach the most potential customers.
-                </p>
-              </div>
-              <div className="bg-gray-800 p-6 rounded-lg text-center">
-                <Image
-                  src={pic3}
-                  alt="Step 3"
-                  layout="responsive"
-                  width={50}
-                  height={50}
-                />
-                <h3 className="text-xl font-bold my-4">Learn Crypto</h3>
-                <p>
-                  We realize ideas from simple to complex, everything becomes
-                  easy to use and reach the most potential customers.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Write-up and Picture Flex Section */}
-        <section className="bg-background text-white py-16 px-6">
-          <div className="container mx-auto flex flex-col md:flex-row items-center">
-            <div className="md:w-1/2">
-              <Image
-                src={mobile}
-                alt="About Us"
-                layout="responsive"
-                width={300}
-                height={300}
-              />
-            </div>
-            <div className="md:w-1/2 md:ml-8">
-              <h2 className="text-2xl font-bold mb-4">Why Choose BitCloud?</h2>
-              <p className="mb-4">
-                BitCloud is a leading cryptocurrency exchange that provides a
-                secure and user-friendly experience. Whether you're a beginner
-                or a pro, we have all the tools you need to succeed in crypto
-                trading.
+        {/* Section 5: Two write-ups and pictures in flex */}
+        <section className="py-16 px-8">
+          <div className="flex flex-col md:flex-row">
+            <div className="flex-1 mb-8 md:mb-0 md:mr-8">
+              <h2 className="text-3xl font-bold mb-4">Our Story</h2>
+              <p className="text-lg">
+                Learn more about how we started and our journey so far.
               </p>
-              <Link href="/about">
-                <button className="px-6 py-3 bg-blue-600 rounded-lg text-white hover:bg-blue-500">
-                  Learn More
-                </button>
-              </Link>
             </div>
+            <div className="flex-1">
+              <h2 className="text-3xl font-bold mb-4">Our Future</h2>
+              <p className="text-lg">See what's next for our company.</p>
+            </div>
+          </div>
+          <div className="flex flex-wrap mt-8">
+            <img
+              src="/path-to-image1.jpg"
+              alt="Image 1"
+              className="w-1/3 h-auto rounded-lg mr-4"
+            />
+            <img
+              src="/path-to-image2.jpg"
+              alt="Image 2"
+              className="w-1/3 h-auto rounded-lg mr-4"
+            />
+            <img
+              src="/path-to-image3.jpg"
+              alt="Image 3"
+              className="w-1/3 h-auto rounded-lg"
+            />
           </div>
         </section>
 
-        {/* How It Works Section */}
-        <section className="bg-gray-900 text-white py-16 px-6">
-          <div className="container mx-auto">
-            <h2 className="text-2xl font-bold text-center mb-8">
-              How It Works
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="bg-gray-800 p-6 rounded-lg">
-                <h3 className="text-xl font-bold mb-4">
-                  Step 1: Create Account
-                </h3>
-                <p>
-                  Create a secure account in just minutes with easy verification
-                  steps.
-                </p>
-              </div>
-              <div className="bg-gray-800 p-6 rounded-lg">
-                <h3 className="text-xl font-bold mb-4">
-                  Step 2: Deposit Funds
-                </h3>
-                <p>Deposit crypto or fiat securely into your account.</p>
-              </div>
-              <div className="bg-gray-800 p-6 rounded-lg">
-                <h3 className="text-xl font-bold mb-4">
-                  Step 3: Start Trading
-                </h3>
-                <p>
-                  Use our platform to trade crypto assets with real-time data
-                  and insights.
-                </p>
-              </div>
+        {/* Section 6: Write-ups and testimonial cards */}
+        <section className="py-16 px-8">
+          <h2 className="text-3xl font-bold mb-4 text-center">
+            What Our Clients Say
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div className="bg-gray-100 p-6 rounded-lg shadow-lg">
+              <p className="text-lg">"This company changed my life!"</p>
+              <p className="mt-4 text-gray-600">- John Doe</p>
+            </div>
+            <div className="bg-gray-100 p-6 rounded-lg shadow-lg">
+              <p className="text-lg">"Professional and trustworthy."</p>
+              <p className="mt-4 text-gray-600">- Jane Smith</p>
+            </div>
+            <div className="bg-gray-100 p-6 rounded-lg shadow-lg">
+              <p className="text-lg">"Exceptional customer service!"</p>
+              <p className="mt-4 text-gray-600">- Michael Brown</p>
+            </div>
+            <div className="bg-gray-100 p-6 rounded-lg shadow-lg">
+              <p className="text-lg">"Highly recommend!"</p>
+              <p className="mt-4 text-gray-600">- Sarah Wilson</p>
             </div>
           </div>
         </section>
