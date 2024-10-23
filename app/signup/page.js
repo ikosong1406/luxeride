@@ -1,19 +1,17 @@
 "use client";
 
-import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { useState } from "react"; // Import useState for form handling
-import logo from "../images/logo.png";
-import Header from "../components/Header";
+import { useState } from "react";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Header from "../components/Header";
 import BackendApi from "../components/BackendApi";
+import background from "../images/car3.jpeg"; // Replace with your background image
 
 const Signup = () => {
   const router = useRouter();
 
-  // State variables for each input
   const [firstname, setFirstname] = useState("");
   const [lastname, setLastname] = useState("");
   const [email, setEmail] = useState("");
@@ -41,10 +39,10 @@ const Signup = () => {
     }
 
     const data = {
-      firstname: firstname,
-      lastname: lastname,
-      email: email,
-      password: password,
+      firstname,
+      lastname,
+      email,
+      password,
       role: "user",
     };
 
@@ -69,86 +67,80 @@ const Signup = () => {
         toast.error("Registration error");
       }
     } finally {
-      setLoading(false); // Stop loading
+      setLoading(false);
     }
   };
 
   return (
     <Header>
-      <div className="min-h-screen flex flex-col lg:flex-row bg-background">
+      <div
+        className="relative min-h-screen flex items-center justify-center bg-cover bg-center min-h-fit py-36"
+        style={{ backgroundImage: `url(${background.src})` }}
+      >
         <ToastContainer />
-        {/* Logo and Sign Up Promo Section */}
-        <div className="hidden lg:block lg:w-1/2">
-          <Image
-            src="/path-to-your-image.jpg" // Add your image path here
-            alt="BitCloud Promo Image"
-            layout="fill"
-            objectFit="cover"
-            className="w-full h-full"
-          />
-        </div>
+        {/* Dark overlay to dim the background */}
+        <div className="absolute inset-0 bg-black opacity-60 z-0"></div>
 
-        {/* Signup Section */}
-        <div className="lg:w-1/2 flex flex-col items-center justify-center py-16 px-8 mt-16">
-          <div className="w-full max-w-md">
-            <h2 className="text-2xl font-semibold text-center mb-6">
-              Create a LuxeRide Account
-            </h2>
+        {/* Sign-up Form Container */}
+        <div className="relative z-10 w-full max-w-md bg-opacity-90 p-8 rounded-lg shadow-lg">
+          <h2 className="text-2xl font-semibold text-center mb-6 text-white">
+            Create a LuxeRide Account
+          </h2>
 
-            <form className="mt-12" onSubmit={handleSubmit}>
-              <input
-                type="text"
-                placeholder="First Name"
-                className="w-full p-3 mb-4 bg-background rounded-lg text-white focus:outline-none border"
-                value={firstname}
-                onChange={(e) => setFirstname(e.target.value)}
-              />
-              <input
-                type="text"
-                placeholder="Last Name"
-                className="w-full p-3 mb-4 bg-background rounded-lg text-white focus:outline-none border"
-                value={lastname}
-                onChange={(e) => setLastname(e.target.value)}
-              />
-              <input
-                type="email"
-                placeholder="Email"
-                className="w-full p-3 mb-4 bg-background rounded-lg text-white focus:outline-none border"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-              <input
-                type="password"
-                placeholder="Password"
-                className="w-full p-3 mb-4 bg-background rounded-lg text-white focus:outline-none border"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
-              <input
-                type="password"
-                placeholder="Confirm Password"
-                className="w-full p-3 mb-4 bg-background rounded-lg text-white focus:outline-none border"
-                value={confirmPassword}
-                onChange={(e) => setConfirmPassword(e.target.value)}
-              />
-              <button
-                type="submit"
-                className="w-full p-3 bg-gold rounded-lg text-white font-bold"
-                disabled={loading}
-              >
-                {loading ? "Registering..." : "Register"}
-              </button>
-            </form>
-            <p className="text-gray-400 mt-6 text-center text-sm">
-              Already have an account?
-              <span
-                className="text-gold cursor-pointer ml-2"
-                onClick={() => router.push("/login")}
-              >
-                Sign in here
-              </span>
-            </p>
-          </div>
+          <form className="mt-12" onSubmit={handleSubmit}>
+            <input
+              type="text"
+              placeholder="First Name"
+              className="w-full p-3 mb-4 bg-gray-200 rounded-lg text-black focus:outline-none border"
+              value={firstname}
+              onChange={(e) => setFirstname(e.target.value)}
+            />
+            <input
+              type="text"
+              placeholder="Last Name"
+              className="w-full p-3 mb-4 bg-gray-200 rounded-lg text-black focus:outline-none border"
+              value={lastname}
+              onChange={(e) => setLastname(e.target.value)}
+            />
+            <input
+              type="email"
+              placeholder="Email"
+              className="w-full p-3 mb-4 bg-gray-200 rounded-lg text-black focus:outline-none border"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            <input
+              type="password"
+              placeholder="Password"
+              className="w-full p-3 mb-4 bg-gray-200 rounded-lg text-black focus:outline-none border"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            <input
+              type="password"
+              placeholder="Confirm Password"
+              className="w-full p-3 mb-4 bg-gray-200 rounded-lg text-black focus:outline-none border"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+            />
+            <button
+              type="submit"
+              className="w-full p-3 bg-gold rounded-lg text-white font-bold"
+              disabled={loading}
+            >
+              {loading ? "Registering..." : "Register"}
+            </button>
+          </form>
+
+          <p className="text-gray-400 mt-6 text-center text-sm">
+            Already have an account?
+            <span
+              className="text-gold cursor-pointer ml-2"
+              onClick={() => router.push("/login")}
+            >
+              Sign in here
+            </span>
+          </p>
         </div>
       </div>
     </Header>
