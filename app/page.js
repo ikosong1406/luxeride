@@ -1,75 +1,122 @@
+"use client";
+
 import React from "react";
 import Image from "next/image";
+import { useRouter } from "next/navigation"; // For page navigation
+import { motion } from "framer-motion"; // Import framer motion
 import Header from "./components/Header";
 import cargif from "./images/cargif.gif";
 import client from "./images/client.jpeg";
 import car1 from "./images/car1.jpeg";
 import car2 from "./images/car2.jpeg";
-import car3 from "./images/car3.jpeg";
-import car4 from "./images/car4.jpeg";
-import car5 from "./images/car5.jpeg";
 import world from "./images/world.jpeg";
 import cert1 from "./images/cert1.jpg";
 import cert2 from "./images/cert2.jpg";
 
+// Animation variants for fade-in effect
+const fadeInUp = {
+  hidden: { opacity: 0, y: 50 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.8 } },
+};
+
 export default function HomePage() {
+  const router = useRouter();
+
+  const handleCallToAction = () => {
+    router.push("/signup");
+  };
+
   return (
     <Header>
       <div className="bg-white">
-        {/* Section 1: Video background with overlay and call to action */}
-        <section className="relative h-96">
+        {/* Section 1: GIF background with overlay and call to action */}
+        <motion.section
+          className="relative h-96"
+          initial="hidden"
+          animate="visible"
+          variants={fadeInUp}
+        >
           <Image
             src={cargif}
             alt="Background GIF"
             className="absolute top-0 left-0 w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-center items-center text-center text-white p-8">
-            <h1 className="text-2xl font-bold mb-4">
+            <motion.h1
+              className="text-2xl font-bold mb-4"
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8 }}
+            >
               Drive Your Dream, Invest in Luxury
-            </h1>
-            <p className="text-base mb-6">
+            </motion.h1>
+            <motion.p
+              className="text-base mb-6"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.4, duration: 0.8 }}
+            >
               Experience the thrill of luxury car rentals or invest in the cars
-              you love for a chance to earn
-            </p>
-            <button className="bg-gold text-white font-bold py-3 px-6 rounded-lg">
+              you love for a chance to earn.
+            </motion.p>
+            <motion.button
+              onClick={handleCallToAction}
+              className="bg-gold text-white font-bold py-3 px-6 rounded-lg"
+              initial={{ scale: 0.8 }}
+              animate={{ scale: 1 }}
+              transition={{ delay: 0.6, duration: 0.6 }}
+            >
               Start Renting or Investing Today
-            </button>
+            </motion.button>
           </div>
-        </section>
+        </motion.section>
 
-        {/* Section 2: Write-up and cards, client pictures */}
-        <section className="py-16 px-8 flex flex-col md:flex-row">
+        {/* Section 2: Write-up and stats with staggered animation */}
+        <motion.section
+          id="section2"
+          className="py-16 px-8 flex flex-col md:flex-row"
+          initial="hidden"
+          whileInView="visible"
+          variants={fadeInUp}
+          viewport={{ once: true, amount: 0.3 }}
+        >
           <div className="flex-1">
             <h2 className="text-xl font-bold mb-4 text-black">
               Building Wealth & Luxury on Wheels
             </h2>
             <div className="grid grid-cols-2 gap-6">
-              <div className="bg-gray-100 p-8 rounded-lg shadow-md">
-                <h3 className="text-2xl font-bold text-bluey">1,000+</h3>
-                <p className="text-gray-600 text-black">Customers</p>
-              </div>
-              <div className="bg-gray-100 p-8 rounded-lg shadow-md">
-                <h3 className="text-2xl font-bold text-bluey">500+</h3>
-                <p className="text-gray-600 text-black">
-                  Successful Investments
-                </p>
-              </div>
-              <div className="bg-gray-100 p-8 rounded-lg shadow-md">
-                <h3 className="text-2xl font-bold text-bluey">200+</h3>
-                <p className="text-gray-600 text-black">
-                  Luxury Cars Available
-                </p>
-              </div>
-              <div className="bg-gray-100 p-8 rounded-lg shadow-md col">
-                <h3 className="text-2xl font-bold text-bluey">10M+</h3>
-                <p className="text-gray-600 text-black">
-                  Dollars Generated in Profit
-                </p>
-              </div>
+              {["1,000+", "500+", "200+", "10M+"].map((stat, index) => (
+                <motion.div
+                  key={index}
+                  className="bg-gray-100 p-8 rounded-lg shadow-md"
+                  variants={fadeInUp}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true, amount: 0.3 }}
+                >
+                  <h3 className="text-2xl font-bold text-bluey">{stat}</h3>
+                  <p className="text-gray-600 text-black">
+                    {
+                      [
+                        "Customers",
+                        "Successful Investments",
+                        "Luxury Cars",
+                        "Dollars in Profit",
+                      ][index]
+                    }
+                  </p>
+                </motion.div>
+              ))}
             </div>
           </div>
 
-          <div className="flex-1 mt-12 md:mt-0 md:ml-16">
+          <motion.div
+            className="flex-1 mt-12 md:mt-0 md:ml-16"
+            initial="hidden"
+            whileInView="visible"
+            variants={fadeInUp}
+            viewport={{ once: true, amount: 0.3 }}
+          >
             <h2 className="text-xl font-bold mb-4 text-black">
               Partnered with the World's Finest
             </h2>
@@ -77,17 +124,23 @@ export default function HomePage() {
               Top-notch luxury brands trust us to deliver high-quality service
               and investment opportunities.
             </p>
-
             <Image
               src={client}
               alt="Client 1"
               className="w-full h-96 md:w-96 rounded-lg"
             />
-          </div>
-        </section>
+          </motion.div>
+        </motion.section>
 
-        {/* Section 3: Two parts with text and images */}
-        <section className="mb-8 px-8 flex flex-col md:flex-row">
+        {/* Section 3: Vision and mission */}
+        <motion.section
+          id="section3"
+          className="mb-8 px-8 flex flex-col md:flex-row"
+          initial="hidden"
+          whileInView="visible"
+          variants={fadeInUp}
+          viewport={{ once: true, amount: 0.3 }}
+        >
           <div className="flex-1">
             <h2 className="text-xl font-bold mb-4 text-black">Our Vision</h2>
             <p className="text-base mb-6 text-black">Luxury for All</p>
@@ -107,10 +160,17 @@ export default function HomePage() {
               className="w-full h-auto rounded-lg mb-6"
             />
           </div>
-        </section>
+        </motion.section>
 
         {/* Section 4: Picture background with overlay */}
-        <section className="relative h-96">
+        <motion.section
+          id="section4"
+          className="relative h-96"
+          initial="hidden"
+          whileInView="visible"
+          variants={fadeInUp}
+          viewport={{ once: true, amount: 0.3 }}
+        >
           <Image
             src={world}
             alt="Background"
@@ -123,63 +183,78 @@ export default function HomePage() {
               from luxury cars. Rent today, invest tomorrow.
             </p>
           </div>
-        </section>
+        </motion.section>
 
-        {/* Section 5: Two write-ups and pictures in flex */}
-        <section className="py-16 px-8">
+        {/* Section 5: Certifications */}
+        <motion.section
+          id="section5"
+          className="py-16 px-8"
+          initial="hidden"
+          whileInView="visible"
+          variants={fadeInUp}
+          viewport={{ once: true, amount: 0.3 }}
+        >
           <h2 className="text-xl font-bold mb-4 text-black">
             Our Certification
           </h2>
           <div className="md:flex">
             <Image
               src={cert1}
-              alt="Background"
+              alt="Certification 1"
               className="w-full h-full object-cover mt-10 md:w-1/2"
             />
             <Image
               src={cert2}
-              alt="Background"
+              alt="Certification 2"
               className="w-full h-full object-cover mt-12 md:w-1/2"
             />
           </div>
-        </section>
+        </motion.section>
 
-        {/* Section 6: Write-ups and testimonial cards */}
-        <section className="py-16 px-8">
+        {/* Section 6: Testimonials */}
+        <motion.section
+          className="py-16 px-8"
+          initial="hidden"
+          whileInView="visible"
+          variants={fadeInUp}
+          viewport={{ once: true, amount: 0.3 }}
+        >
           <h2 className="text-xl font-bold mb-4 text-center text-black">
             What Our Clients Say
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-            <div className="bg-gray-100 p-6 rounded-lg shadow-lg">
-              <p className="text-lg text-black">
-                "I never thought I could earn from my love of luxury cars. This
-                platform made it possible!"
-              </p>
-              <p className="mt-4 text-black">- John Doe</p>
-            </div>
-            <div className="bg-gray-100 p-6 rounded-lg shadow-lg">
-              <p className="text-lg text-black">
-                "Not only did I get to drive my dream car, but I also made a
-                smart investment."
-              </p>
-              <p className="mt-4 text-black">- Jane Smith</p>
-            </div>
-            <div className="bg-gray-100 p-6 rounded-lg shadow-lg">
-              <p className="text-lg text-black">
-                "The entire process, from renting to investing, was smooth and
-                professional."
-              </p>
-              <p className="mt-4 text-black">- Michael Brown</p>
-            </div>
-            <div className="bg-gray-100 p-6 rounded-lg shadow-lg">
-              <p className="text-lg text-black">
-                "A game changer for car enthusiasts who want to earn while
-                enjoying luxury."
-              </p>
-              <p className="mt-4 text-black">- Sarah Wilson</p>
-            </div>
+            {[
+              {
+                text: "I never thought I could earn from my love of luxury cars. This platform made it possible!",
+                name: "John Doe",
+              },
+              {
+                text: "Not only did I get to drive my dream car, but I also made a smart investment.",
+                name: "Jane Smith",
+              },
+              {
+                text: "The entire process, from renting to investing, was smooth and professional.",
+                name: "Michael Brown",
+              },
+              {
+                text: "A game changer for car enthusiasts who want to earn while enjoying luxury.",
+                name: "Sarah Wilson",
+              },
+            ].map((testimonial, index) => (
+              <motion.div
+                key={index}
+                className="bg-gray-100 p-6 rounded-lg shadow-lg"
+                variants={fadeInUp}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.3 }}
+              >
+                <p className="text-lg text-black">{testimonial.text}</p>
+                <p className="mt-4 text-black">- {testimonial.name}</p>
+              </motion.div>
+            ))}
           </div>
-        </section>
+        </motion.section>
       </div>
     </Header>
   );
