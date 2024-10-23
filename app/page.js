@@ -9,6 +9,8 @@ import car3 from "./images/car3.jpeg";
 import car4 from "./images/car4.jpeg";
 import car5 from "./images/car5.jpeg";
 import world from "./images/world.jpeg";
+import cert1 from "./images/cert1.jpg";
+import cert2 from "./images/cert2.jpg";
 
 export default function HomePage() {
   return (
@@ -21,7 +23,7 @@ export default function HomePage() {
             alt="Background GIF"
             className="absolute top-0 left-0 w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-black bg-opacity-70 flex flex-col justify-center items-center text-center text-white p-8">
+          <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-center items-center text-center text-white p-8">
             <h1 className="text-2xl font-bold mb-4">
               Drive Your Dream, Invest in Luxury
             </h1>
@@ -92,30 +94,18 @@ export default function HomePage() {
             <Image
               src={car1}
               alt="Vision"
-              className="w-full h-80 md:h-12 rounded-lg"
+              className="w-full h-80 md:h-96 rounded-lg"
             />
           </div>
 
           <div className="flex-1 mt-12 md:mt-0 md:ml-16">
-            <h2 className="text-3xl font-bold mb-4 text-black">Our Mission</h2>
+            <h2 className="text-xl font-bold mb-4 text-black">Our Mission</h2>
             <p className="text-base mb-6 text-black">Empowering You to Earn</p>
-            <img
-              src="/path-to-mission.jpg"
+            <Image
+              src={car2}
               alt="Mission"
               className="w-full h-auto rounded-lg mb-6"
             />
-            <div className="flex">
-              <img
-                src="/path-to-picture1.jpg"
-                alt="Mission Picture 1"
-                className="w-1/2 h-auto rounded-lg mr-2"
-              />
-              <img
-                src="/path-to-picture2.jpg"
-                alt="Mission Picture 2"
-                className="w-1/2 h-auto rounded-lg ml-2"
-              />
-            </div>
           </div>
         </section>
 
@@ -126,7 +116,7 @@ export default function HomePage() {
             alt="Background"
             className="absolute top-0 left-0 w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-black bg-opacity-70 flex flex-col justify-center items-center text-center text-white p-8">
+          <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-center items-center text-center text-white p-8">
             <h2 className="text-2xl font-bold mb-4">Luxury Meets Investment</h2>
             <p className="text-base mb-6">
               Join us in revolutionizing the way people experience and profit
@@ -137,58 +127,56 @@ export default function HomePage() {
 
         {/* Section 5: Two write-ups and pictures in flex */}
         <section className="py-16 px-8">
-          <div className="flex flex-col md:flex-row">
-            <div className="flex-1 mb-8 md:mb-0 md:mr-8">
-              <h2 className="text-3xl font-bold mb-4">Our Story</h2>
-              <p className="text-lg">
-                Learn more about how we started and our journey so far.
-              </p>
-            </div>
-            <div className="flex-1">
-              <h2 className="text-3xl font-bold mb-4">Our Future</h2>
-              <p className="text-lg">See what's next for our company.</p>
-            </div>
-          </div>
-          <div className="flex flex-wrap mt-8">
-            <img
-              src="/path-to-image1.jpg"
-              alt="Image 1"
-              className="w-1/3 h-auto rounded-lg mr-4"
+          <h2 className="text-xl font-bold mb-4 text-black">
+            Our Certification
+          </h2>
+          <div className="md:flex">
+            <Image
+              src={cert1}
+              alt="Background"
+              className="w-full h-full object-cover mt-10 md:w-1/2"
             />
-            <img
-              src="/path-to-image2.jpg"
-              alt="Image 2"
-              className="w-1/3 h-auto rounded-lg mr-4"
-            />
-            <img
-              src="/path-to-image3.jpg"
-              alt="Image 3"
-              className="w-1/3 h-auto rounded-lg"
+            <Image
+              src={cert2}
+              alt="Background"
+              className="w-full h-full object-cover mt-12 md:w-1/2"
             />
           </div>
         </section>
 
         {/* Section 6: Write-ups and testimonial cards */}
         <section className="py-16 px-8">
-          <h2 className="text-3xl font-bold mb-4 text-center">
+          <h2 className="text-xl font-bold mb-4 text-center text-black">
             What Our Clients Say
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div className="bg-gray-100 p-6 rounded-lg shadow-lg">
-              <p className="text-lg">"This company changed my life!"</p>
-              <p className="mt-4 text-gray-600">- John Doe</p>
+              <p className="text-lg text-black">
+                "I never thought I could earn from my love of luxury cars. This
+                platform made it possible!"
+              </p>
+              <p className="mt-4 text-black">- John Doe</p>
             </div>
             <div className="bg-gray-100 p-6 rounded-lg shadow-lg">
-              <p className="text-lg">"Professional and trustworthy."</p>
-              <p className="mt-4 text-gray-600">- Jane Smith</p>
+              <p className="text-lg text-black">
+                "Not only did I get to drive my dream car, but I also made a
+                smart investment."
+              </p>
+              <p className="mt-4 text-black">- Jane Smith</p>
             </div>
             <div className="bg-gray-100 p-6 rounded-lg shadow-lg">
-              <p className="text-lg">"Exceptional customer service!"</p>
-              <p className="mt-4 text-gray-600">- Michael Brown</p>
+              <p className="text-lg text-black">
+                "The entire process, from renting to investing, was smooth and
+                professional."
+              </p>
+              <p className="mt-4 text-black">- Michael Brown</p>
             </div>
             <div className="bg-gray-100 p-6 rounded-lg shadow-lg">
-              <p className="text-lg">"Highly recommend!"</p>
-              <p className="mt-4 text-gray-600">- Sarah Wilson</p>
+              <p className="text-lg text-black">
+                "A game changer for car enthusiasts who want to earn while
+                enjoying luxury."
+              </p>
+              <p className="mt-4 text-black">- Sarah Wilson</p>
             </div>
           </div>
         </section>
