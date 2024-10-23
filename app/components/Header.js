@@ -34,16 +34,10 @@ const Header = ({ children }) => {
         {/* Navigation Links for Desktop */}
         <nav className="hidden md:flex space-x-6">
           <span
-            onClick={() => router.push("/")}
+            onClick={() => router.push("/about")}
             className="hover:text-gray-400 cursor-pointer"
           >
             About Us
-          </span>
-          <span
-            onClick={() => router.push("/exchange")}
-            className="hover:text-gray-400 cursor-pointer"
-          >
-            Car Rental
           </span>
           <span
             onClick={() => router.push("/market")}
@@ -100,11 +94,8 @@ const Header = ({ children }) => {
       {isOpen && (
         <div className="md:hidden bg-gray-700 text-white p-4">
           <nav className="flex flex-col space-y-4">
-            <Link href="/" className="hover:text-gray-400">
+            <Link href="/about" className="hover:text-gray-400">
               About Us
-            </Link>
-            <Link href="/exchange" className="hover:text-gray-400">
-              Car Rental
             </Link>
             <Link href="/market" className="hover:text-gray-400">
               FAQ

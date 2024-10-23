@@ -22,7 +22,7 @@ module.exports = {
       orange: "#ec8305",
       green: "#00ff7f",
       red: "#FF0000",
-      black2: "#272424",
+      black2: "#514949",
     },
     screens: {
       sm: "640px",
