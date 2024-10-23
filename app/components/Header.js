@@ -40,7 +40,7 @@ const Header = ({ children }) => {
             About Us
           </span>
           <span
-            onClick={() => router.push("/market")}
+            onClick={() => router.push("/faq")}
             className="hover:text-gray-400 cursor-pointer"
           >
             FAQ
@@ -97,7 +97,7 @@ const Header = ({ children }) => {
             <Link href="/about" className="hover:text-gray-400">
               About Us
             </Link>
-            <Link href="/market" className="hover:text-gray-400">
+            <Link href="/faq" className="hover:text-gray-400">
               FAQ
             </Link>
             <Link href="/market" className="hover:text-gray-400">
