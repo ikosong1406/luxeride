@@ -226,19 +226,19 @@ export default function HomePage() {
             {[
               {
                 text: "I never thought I could earn from my love of luxury cars. This platform made it possible!",
-                name: "John Doe",
+                name: "Alex Turner",
               },
               {
                 text: "Not only did I get to drive my dream car, but I also made a smart investment.",
-                name: "Jane Smith",
+                name: " Michelle Wong",
               },
               {
                 text: "The entire process, from renting to investing, was smooth and professional.",
-                name: "Michael Brown",
+                name: "Richard Hayes",
               },
               {
                 text: "A game changer for car enthusiasts who want to earn while enjoying luxury.",
-                name: "Sarah Wilson",
+                name: "Sarah Edwards",
               },
             ].map((testimonial, index) => (
               <motion.div
