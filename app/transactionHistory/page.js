@@ -34,7 +34,7 @@ export default function TransactionHistory() {
         {transactions.map((transaction, index) => (
           <div
             key={index}
-            className={`bg-white p-4 rounded-lg shadow-md flex items-center justify-between transition-transform transform hover:scale-105 ${
+            className={`bg-white2 p-4 rounded-lg shadow-md flex items-center justify-between transition-transform transform hover:scale-105 ${
               transaction.type === "deposit"
                 ? "border-l-4 border-green"
                 : "border-l-4 border-red"
