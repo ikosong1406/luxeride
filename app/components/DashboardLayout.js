@@ -77,7 +77,7 @@ export default function DashboardLayout({ children }) {
               <span>Portfolio</span>
             </span>
             <span
-              onClick={() => router.push("/carInvestments")}
+              onClick={() => router.push("/car")}
               className={`block hover:bg-gold p-2 rounded cursor-pointer flex items-center space-x-2 ${
                 currentPath === "/carInvestments" ? "bg-orange text-white" : ""
               }`}
