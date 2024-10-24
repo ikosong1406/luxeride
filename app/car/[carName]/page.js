@@ -79,6 +79,7 @@ export default function CarDetails({ params }) {
       <Link
         href={`/invest/${carDetails.name.replace(/\s+/g, "-").toLowerCase()}`}
         className="fixed bottom-4 right-4 bg-bluey text-white p-4 rounded-md"
+        style={{ width: "50%" }}
       >
         Invest Now
       </Link>
