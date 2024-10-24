@@ -57,7 +57,7 @@ export default function Withdrawal() {
           {/* Continue Button */}
           <button
             onClick={handleContinue}
-            className="p-2 w-full bg-bluey text-white rounded-lg mt-8"
+            className="p-2 w-full bg-blue text-white rounded-lg mt-8"
           >
             Continue
           </button>

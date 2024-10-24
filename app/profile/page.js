@@ -1,19 +1,20 @@
 // pages/dashboard/profile.js
 "use client";
 import DashboardLayout from "../components/DashboardLayout";
-import Image from "next/image"; // Assuming you are using next/image for the profile picture
+import Image from "next/image";
 import { useState, useEffect } from "react";
 import user from "../images/usericon.jpeg";
-import Notification from "../components/Notification";
 import axios from "axios";
 import BackendApi from "../components/BackendApi";
 import { getUserToken } from "../components/storage";
+import { FaCheckCircle } from "react-icons/fa"; // Icon for verified status
+import { useRouter } from "next/navigation";
 
 export default function Profile() {
+  const router = useRouter();
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [userData, setUserData] = useState([]);
-  const [refreshing, setRefreshing] = useState(false);
+  const [userData, setUserData] = useState({});
   const [token, setToken] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -29,7 +30,6 @@ export default function Profile() {
       try {
         const userToken = await getUserToken();
         setToken(userToken);
-        // console.log(token);
       } catch (error) {
         console.error("Error retrieving token:", error);
       }
@@ -39,11 +39,8 @@ export default function Profile() {
   }, []);
 
   const getData = async () => {
-    const data = {
-      token,
-    };
+    const data = { token };
     try {
-      // console.log(token);
       const response = await axios.post(`${BackendApi}/userdata`, data);
       setUserData(response.data.data);
     } catch (error) {
@@ -54,7 +51,6 @@ export default function Profile() {
   useEffect(() => {
     if (token) {
       const interval = setInterval(() => {
-        setRefreshing(true);
         getData();
       }, 1000);
 
@@ -73,8 +69,7 @@ export default function Profile() {
 
   return (
     <DashboardLayout>
-      <Notification />
-      <h1 className="text-xl font-bold mb-6">Profile</h1>
+      <h1 className="text-xl font-bold mb-6 text-black">Profile</h1>
 
       <div className="flex flex-col items-center space-y-4">
         {/* User profile picture */}
@@ -86,40 +81,102 @@ export default function Profile() {
           className="rounded-full"
         />
 
-        {/* User name, ID, and email */}
-        <div className="text-center">
-          <h2 className="text-xl font-semibold mt-4">
-            {userData.firstname} {userData.lastname}
-          </h2>
-          <p className="text-gray-400 mt-4">ID: {userData._id}</p>
-          <p className="text-gray-400 mt-4">{userData.email}</p>
+        {/* Verified status */}
+        <div className="flex items-center space-x-2">
+          {userData.isVerified ? (
+            <div className="flex items-center text-green">
+              <FaCheckCircle className="mr-2" />
+              <span>Verified</span>
+            </div>
+          ) : (
+            <button
+              className="bg-blue p-2 rounded-md text-white font-semibold"
+              onClick={() => router.push("/verify")}
+            >
+              Verify Account
+            </button>
+          )}
         </div>
 
-        {/* Password change inputs */}
-        <div className="w-full max-w-md">
-          <div className="flex flex-col space-y-4">
-            <input
-              type="password"
-              placeholder="New Password"
-              className="p-2 bg-gray-700 rounded-md text-white w-full"
-              value={newPassword}
-              onChange={(e) => setNewPassword(e.target.value)}
-            />
-            <input
-              type="password"
-              placeholder="Confirm Password"
-              className="p-2 bg-gray-700 rounded-md text-white w-full"
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
-            />
-            <button
-              className="bg-bluey p-2 rounded-md text-white w-full font-semibold"
-              onClick={handleChangePassword}
-            >
-              Change Password
-            </button>
-          </div>
+        {/* Profile form */}
+        <div className="w-full max-w-2xl grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <input
+            type="text"
+            placeholder={userData.firstname || "First Name"}
+            className="p-2 border border-black rounded text-black w-full"
+            defaultValue={userData.firstname}
+            onChange={(e) =>
+              setUserData((prev) => ({ ...prev, firstname: e.target.value }))
+            }
+          />
+          <input
+            type="text"
+            placeholder={userData.lastname || "Last Name"}
+            className="p-2 border border-black rounded text-black w-full"
+            defaultValue={userData.lastname}
+            onChange={(e) =>
+              setUserData((prev) => ({ ...prev, lastname: e.target.value }))
+            }
+          />
+          <input
+            type="email"
+            placeholder={userData.email || "Email"}
+            className="p-2 border border-black rounded text-black w-full"
+            defaultValue={userData.email}
+            onChange={(e) =>
+              setUserData((prev) => ({ ...prev, email: e.target.value }))
+            }
+          />
+          <input
+            type="text"
+            placeholder={userData.gender || "Gender"}
+            className="p-2 border border-black rounded text-black w-full"
+            defaultValue={userData.gender}
+            onChange={(e) =>
+              setUserData((prev) => ({ ...prev, gender: e.target.value }))
+            }
+          />
+          <input
+            type="text"
+            placeholder={userData.phone || "Phone Number"}
+            className="p-2 border border-black rounded text-black w-full"
+            defaultValue={userData.phone}
+            onChange={(e) =>
+              setUserData((prev) => ({ ...prev, phone: e.target.value }))
+            }
+          />
+          <input
+            type="text"
+            placeholder={userData.country || "Country"}
+            className="p-2 border border-black rounded text-black w-full"
+            defaultValue={userData.country}
+            onChange={(e) =>
+              setUserData((prev) => ({ ...prev, country: e.target.value }))
+            }
+          />
+          <input
+            type="password"
+            placeholder="New Password"
+            className="p-2 border border-black rounded text-white w-full"
+            value={newPassword}
+            onChange={(e) => setNewPassword(e.target.value)}
+          />
+          <input
+            type="password"
+            placeholder="Confirm New Password"
+            className="p-2 border border-black rounded text-white w-full"
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
+          />
         </div>
+
+        {/* Change Password Button */}
+        <button
+          className="bg-blue p-2 rounded-md text-white w-full font-semibold mt-4"
+          onClick={handleChangePassword}
+        >
+          Change Password
+        </button>
       </div>
     </DashboardLayout>
   );
