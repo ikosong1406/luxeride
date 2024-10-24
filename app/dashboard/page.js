@@ -85,7 +85,7 @@ export default function Overview() {
   return (
     <DashboardLayout>
       <Notification />
-      <div className=" space-y-8">
+      <div className="bg-white space-y-8">
         {/* Total Balance */}
         <div className="bg-black2 p-6 rounded-lg">
           <h1 className="text-2xl font-bold">Overview</h1>

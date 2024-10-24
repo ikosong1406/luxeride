@@ -75,7 +75,7 @@ const About = () => {
               ].map((member, index) => (
                 <div
                   key={index}
-                  className="w-full sm:w-1/2 lg:w-1/4 bg-white shadow-lg p-4 rounded-lg"
+                  className="w-full sm:w-1/2 lg:w-1/4 bg-white2 shadow-lg p-4 rounded-lg"
                 >
                   <Image
                     src={member.image}
@@ -113,7 +113,7 @@ const About = () => {
               ].map((member, index) => (
                 <div
                   key={index}
-                  className="w-full sm:w-1/2 lg:w-1/3 bg-white shadow-lg p-4 rounded-lg"
+                  className="w-full sm:w-1/2 lg:w-1/3 bg-white2 shadow-lg p-4 rounded-lg"
                 >
                   <Image
                     src={member.image}

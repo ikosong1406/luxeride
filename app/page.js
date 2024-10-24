@@ -88,7 +88,7 @@ export default function HomePage() {
               {["1,000+", "500+", "200+", "10M+"].map((stat, index) => (
                 <motion.div
                   key={index}
-                  className="bg-gray-100 p-8 rounded-lg shadow-md"
+                  className="bg-white2 p-8 rounded-lg shadow-md"
                   variants={fadeInUp}
                   initial="hidden"
                   whileInView="visible"
@@ -243,7 +243,7 @@ export default function HomePage() {
             ].map((testimonial, index) => (
               <motion.div
                 key={index}
-                className="bg-gray-100 p-6 rounded-lg shadow-lg"
+                className="bg-white2 p-6 rounded-lg shadow-lg"
                 variants={fadeInUp}
                 initial="hidden"
                 whileInView="visible"
