@@ -8,9 +8,10 @@ import {
   FaCoins,
   FaHistory,
   FaUser,
-  FaUsers,
-  FaHammer,
-} from "react-icons/fa"; // Ensure these are imported correctly
+  FaChartLine,
+  FaCar,
+  FaDollarSign,
+} from "react-icons/fa"; // Updated to more appropriate icons
 import logo from "../images/logo.png"; // Ensure the logo is correctly imported
 
 export default function DashboardLayout({ children }) {
@@ -64,16 +65,25 @@ export default function DashboardLayout({ children }) {
               }`}
             >
               <FaHome />
-              <span>Overview</span>
+              <span>Dashboard Overview</span>
             </span>
             <span
-              onClick={() => router.push("/mining")}
+              onClick={() => router.push("/portfolio")}
               className={`block hover:bg-gold p-2 rounded cursor-pointer flex items-center space-x-2 ${
-                currentPath === "/mining" ? "bg-orange text-white" : ""
+                currentPath === "/portfolio" ? "bg-orange text-white" : ""
               }`}
             >
-              <FaHammer />
+              <FaChartLine />
               <span>Investment Portfolio</span>
+            </span>
+            <span
+              onClick={() => router.push("/carInvestments")}
+              className={`block hover:bg-gold p-2 rounded cursor-pointer flex items-center space-x-2 ${
+                currentPath === "/carInvestments" ? "bg-orange text-white" : ""
+              }`}
+            >
+              <FaCar />
+              <span>Car Investments</span>
             </span>
             <span
               onClick={() => router.push("/deposit")}
@@ -82,7 +92,7 @@ export default function DashboardLayout({ children }) {
               }`}
             >
               <FaCoins />
-              <span>Deposit</span>
+              <span>Deposit Funds</span>
             </span>
             <span
               onClick={() => router.push("/withdraw")}
@@ -91,7 +101,7 @@ export default function DashboardLayout({ children }) {
               }`}
             >
               <FaCoins />
-              <span>Withdrawal</span>
+              <span>Withdraw Funds</span>
             </span>
             <span
               onClick={() => router.push("/transactionHistory")}
@@ -106,7 +116,7 @@ export default function DashboardLayout({ children }) {
             </span>
             <span
               onClick={() => router.push("/profile")}
-              className={`block hover:bg-orange p-2 rounded cursor-pointer flex items-center space-x-2 ${
+              className={`block hover:bg-gold p-2 rounded cursor-pointer flex items-center space-x-2 ${
                 currentPath === "/profile" ? "bg-orange text-white" : ""
               }`}
             >
