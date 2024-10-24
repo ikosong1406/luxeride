@@ -12,7 +12,8 @@ import {
   FaCar,
   FaDollarSign,
 } from "react-icons/fa"; // Updated to more appropriate icons
-import logo from "../images/logo.png"; // Ensure the logo is correctly imported
+import logo from "../images/logo.png";
+import user from "../images/usericon.jpeg";
 
 export default function DashboardLayout({ children }) {
   const router = useRouter();
@@ -27,7 +28,14 @@ export default function DashboardLayout({ children }) {
           <Image src={logo} alt="Logo" width={30} height={30} />
           <h1 className="text-xl font-bold">LuxeRide</h1>
         </div>
-        <div className="flex items-center space-x-4">
+        <div className="flex items-center space-x-4 w-28 justify-between">
+          <Image
+            src={user}
+            alt="user"
+            width={35}
+            height={35}
+            style={{ borderRadius: 100 }}
+          />
           <button
             className="lg:hidden p-2 bg-gray-700 rounded-md"
             onClick={() => setIsSidebarOpen(!isSidebarOpen)}
