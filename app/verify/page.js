@@ -61,7 +61,7 @@ export default function Verify() {
             ID
           </button>
           <button
-            className={`p-2 rounded-md ${
+            className={`p-2 ${
               selectedOption === "Residence Permit"
                 ? "border-b-2 border-blue text-black"
                 : "bg-gray-300 text-black"
@@ -71,7 +71,7 @@ export default function Verify() {
             Residence Permit
           </button>
           <button
-            className={`p-2 rounded-md ${
+            className={`p-2  ${
               selectedOption === "Passport"
                 ? "border-b-2 border-blue text-black"
                 : "bg-gray-300 text-black"
@@ -81,7 +81,7 @@ export default function Verify() {
             Passport
           </button>
           <button
-            className={`p-2 rounded-md ${
+            className={`p-2 ${
               selectedOption === "Drivers License"
                 ? "border-b-2 border-blue text-black"
                 : "bg-gray-300 text-black"
