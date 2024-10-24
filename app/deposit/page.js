@@ -150,7 +150,7 @@ export default function Deposit() {
           />
           <p className="mb-4 text-lg">{walletAddresses[selectedCoin]}</p>
           <button
-            className="p-2 bg-gold text-white rounded-lg mt-10"
+            className="p-2 bg-bluey text-white rounded-lg mt-10"
             onClick={handleConfirmClick}
           >
             I have made the deposit
