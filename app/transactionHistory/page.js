@@ -2,7 +2,6 @@
 "use client";
 import DashboardLayout from "../components/DashboardLayout";
 import { FaArrowDown, FaArrowUp } from "react-icons/fa"; // Icons for deposit/withdrawal
-import Notification from "../components/Notification";
 
 export default function TransactionHistory() {
   // Sample transaction data
@@ -29,39 +28,50 @@ export default function TransactionHistory() {
 
   return (
     <DashboardLayout>
-      <Notification />
-      <h1 className="text-xl font-bold mb-6">Transaction History</h1>
+      <h1 className="text-xl font-bold mb-6 text-black">Transaction History</h1>
 
-      {/* <div className="bg-gray-800 rounded-md">
-        <table className="w-full text-left">
-          <thead>
-            <tr>
-              <th className="py-2">Type</th>
-              <th className="py-2">Date</th>
-              <th className="py-2">Amount</th>
-            </tr>
-          </thead>
-          <tbody>
-            {transactions.map((transaction, index) => (
-              <tr key={index} className="border-t border-gray-700">
-                <td className="py-2 flex items-center">
-                  {transaction.type === "deposit" ? (
-                    <FaArrowDown className="text-green mr-2" />
-                  ) : (
-                    <FaArrowUp className="text-red mr-2" />
-                  )}
+      <div className="space-y-4 text-black">
+        {transactions.map((transaction, index) => (
+          <div
+            key={index}
+            className={`bg-white p-4 rounded-lg shadow-md flex items-center justify-between transition-transform transform hover:scale-105 ${
+              transaction.type === "deposit"
+                ? "border-l-4 border-green"
+                : "border-l-4 border-red"
+            }`}
+          >
+            {/* Icon and Label */}
+            <div className="flex items-center space-x-4">
+              {transaction.type === "deposit" ? (
+                <FaArrowDown className="text-green text-2xl" />
+              ) : (
+                <FaArrowUp className="text-red text-2xl" />
+              )}
+              <div>
+                <h2 className="text-lg font-semibold text-gray-700">
                   {transaction.label}
-                </td>
-                <td className="py-2">{transaction.date}</td>
-                <td className="py-2">{transaction.amount}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div> */}
-      <p style={{ color: "white", textAlign: "center", fontSize: 16 }}>
-        No transactions
-      </p>
+                </h2>
+                <p className="text-gray-500">
+                  {new Date(transaction.date).toLocaleDateString()}
+                </p>
+              </div>
+            </div>
+
+            {/* Amount */}
+            <div>
+              <p
+                className={`text-xl font-bold ${
+                  transaction.type === "deposit"
+                    ? "text-green-500"
+                    : "text-red-500"
+                }`}
+              >
+                {transaction.amount}
+              </p>
+            </div>
+          </div>
+        ))}
+      </div>
     </DashboardLayout>
   );
 }

@@ -65,7 +65,7 @@ export default function DashboardLayout({ children }) {
               }`}
             >
               <FaHome />
-              <span>Dashboard Overview</span>
+              <span>Overview</span>
             </span>
             <span
               onClick={() => router.push("/portfolio")}
@@ -74,7 +74,7 @@ export default function DashboardLayout({ children }) {
               }`}
             >
               <FaChartLine />
-              <span>Investment Portfolio</span>
+              <span>Portfolio</span>
             </span>
             <span
               onClick={() => router.push("/carInvestments")}
@@ -92,7 +92,7 @@ export default function DashboardLayout({ children }) {
               }`}
             >
               <FaCoins />
-              <span>Deposit Funds</span>
+              <span>Deposit</span>
             </span>
             <span
               onClick={() => router.push("/withdraw")}
@@ -101,7 +101,7 @@ export default function DashboardLayout({ children }) {
               }`}
             >
               <FaCoins />
-              <span>Withdraw Funds</span>
+              <span>Withdraw</span>
             </span>
             <span
               onClick={() => router.push("/transactionHistory")}
