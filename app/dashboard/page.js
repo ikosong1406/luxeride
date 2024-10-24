@@ -71,7 +71,7 @@ export default function Overview() {
 
   return (
     <DashboardLayout>
-      <div className="space-y-8 bg-white p-4">
+      <div className="space-y-8 bg-white p-2">
         {/* Greeting and Date Section */}
         <div className=" justify-between items-center lg:flex">
           <h1 className="text-xl text-black font-semibold">
