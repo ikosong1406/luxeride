@@ -2,9 +2,6 @@
 "use client";
 import { useState } from "react";
 import DashboardLayout from "../components/DashboardLayout";
-import { FaBitcoin, FaTether } from "react-icons/fa"; // Icons for Bitcoin and USDT
-// import Modal from "../components/Modal"; // Import modal component
-import Notification from "../components/Notification";
 
 export default function Withdrawal() {
   const [amount, setAmount] = useState("");
@@ -24,8 +21,7 @@ export default function Withdrawal() {
 
   return (
     <DashboardLayout>
-      <Notification />
-      <div className="py-6">
+      <div className="py-6 text-black">
         {/* Amount and Wallet Address Section */}
         <section className="mb-6">
           <h1 className="text-xl font-bold mb-4 text-center">Withdraw Funds</h1>
@@ -34,7 +30,7 @@ export default function Withdrawal() {
           <select
             value={selectedCoin}
             onChange={(e) => setSelectedCoin(e.target.value)}
-            className="w-full p-2 border border-gray-500 rounded text-white mb-4 bg-background mt-4"
+            className="w-full p-2 border border-black rounded text-black mb-4 mt-4"
           >
             <option value="usdt">USDT (Tether)</option>
             <option value="bitcoin">Bitcoin (BTC)</option>
@@ -46,7 +42,7 @@ export default function Withdrawal() {
             placeholder="Enter amount"
             value={amount}
             onChange={(e) => setAmount(e.target.value)}
-            className="w-full p-2 mb-4 border border-gray-500 rounded bg-background text-white mt-8"
+            className="w-full p-2 mb-4 border border-black rounded bg-background text-black mt-8"
           />
 
           {/* Wallet Address Input */}
@@ -55,13 +51,13 @@ export default function Withdrawal() {
             placeholder="Enter wallet address"
             value={walletAddress}
             onChange={(e) => setWalletAddress(e.target.value)}
-            className="w-full p-2 mb-4 border border-gray-500 rounded bg-background text-white mt-8"
+            className="w-full p-2 mb-4 border border-black rounded bg-background text-black mt-8"
           />
 
           {/* Continue Button */}
           <button
             onClick={handleContinue}
-            className="p-2 w-full bg-bluey text-white rounded-lg mt-8"
+            className="p-2 w-full bg-gold text-white rounded-lg mt-8"
           >
             Continue
           </button>

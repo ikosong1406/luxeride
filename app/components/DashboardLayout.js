@@ -67,15 +67,6 @@ export default function DashboardLayout({ children }) {
               <span>Overview</span>
             </span>
             <span
-              onClick={() => router.push("/fixedCapital")}
-              className={`block hover:bg-gold p-2 rounded cursor-pointer flex items-center space-x-2 ${
-                currentPath === "/fixedCapital" ? "bg-orange text-white" : ""
-              }`}
-            >
-              <FaCoins />
-              <span>Rental Booking</span>
-            </span>
-            <span
               onClick={() => router.push("/mining")}
               className={`block hover:bg-gold p-2 rounded cursor-pointer flex items-center space-x-2 ${
                 currentPath === "/mining" ? "bg-orange text-white" : ""
@@ -83,6 +74,24 @@ export default function DashboardLayout({ children }) {
             >
               <FaHammer />
               <span>Investment Portfolio</span>
+            </span>
+            <span
+              onClick={() => router.push("/deposit")}
+              className={`block hover:bg-gold p-2 rounded cursor-pointer flex items-center space-x-2 ${
+                currentPath === "/deposit" ? "bg-orange text-white" : ""
+              }`}
+            >
+              <FaCoins />
+              <span>Deposit</span>
+            </span>
+            <span
+              onClick={() => router.push("/withdraw")}
+              className={`block hover:bg-gold p-2 rounded cursor-pointer flex items-center space-x-2 ${
+                currentPath === "/withdraw" ? "bg-orange text-white" : ""
+              }`}
+            >
+              <FaCoins />
+              <span>Withdrawal</span>
             </span>
             <span
               onClick={() => router.push("/transactionHistory")}

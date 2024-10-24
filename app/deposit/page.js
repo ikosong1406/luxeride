@@ -5,7 +5,6 @@ import DashboardLayout from "../components/DashboardLayout";
 import { FaBitcoin } from "react-icons/fa"; // Icons for Bitcoin and USDT
 import { SiTether } from "react-icons/si";
 import QRCode from "react-qr-code"; // You can install this package using `npm install react-qr-code`
-import Notification from "../components/Notification";
 import axios from "axios";
 import BackendApi from "../components/BackendApi";
 import { getUserToken } from "../components/storage";
@@ -87,12 +86,10 @@ export default function Deposit() {
   };
 
   // List of amounts to display
-  const amounts = [10, 20, 50, 100, 200, 500];
-
+  const amounts = [1000, 2000, 5000, 10000, 20000, 50000];
   return (
     <DashboardLayout>
-      <Notification />
-      <div className="py-6">
+      <div className="py-6 text-black">
         {/* Amount Selection Section */}
         <section className="mb-6">
           <h1 className="text-xl font-bold mb-4">Select Amount to Deposit</h1>
@@ -102,7 +99,7 @@ export default function Deposit() {
                 key={amt}
                 onClick={() => setAmount(amt)}
                 className={`cursor-pointer p-4 bg-gray-800 text-center rounded-lg border ${
-                  amount === amt ? "border-green" : "border-transparent"
+                  amount === amt ? "border-gold" : "border-transparent"
                 } hover:border-blue-500`}
               >
                 <p className="text-base font-bold">${amt}</p>
@@ -114,7 +111,7 @@ export default function Deposit() {
             placeholder="Enter amount"
             value={amount}
             onChange={(e) => setAmount(e.target.value)}
-            className="w-full p-2 mb-4 border border-gray-500 rounded bg-background text-white mt-10"
+            className="w-full p-2 mb-4 border border-black rounded text-black mt-10"
           />
         </section>
 
@@ -124,7 +121,7 @@ export default function Deposit() {
           <select
             value={selectedCoin}
             onChange={(e) => setSelectedCoin(e.target.value)}
-            className="w-full p-2 border border-gray-500 rounded bg-background text-white"
+            className="w-full p-2 border border-black rounded bg-background text-black"
           >
             <option value="usdt"> USDT (Tether)</option>
             <option value="bitcoin">Bitcoin (BTC)</option>
@@ -153,7 +150,7 @@ export default function Deposit() {
           />
           <p className="mb-4 text-lg">{walletAddresses[selectedCoin]}</p>
           <button
-            className="p-2 bg-bluey text-white rounded-lg mt-10"
+            className="p-2 bg-gold text-white rounded-lg mt-10"
             onClick={handleConfirmClick}
           >
             I have made the deposit

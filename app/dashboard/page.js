@@ -1,18 +1,13 @@
 "use client";
 
-import DashboardLayout from "../components/DashboardLayout";
 import { useEffect, useState } from "react";
-import { FaBitcoin, FaEthereum } from "react-icons/fa";
-import { SiTether } from "react-icons/si";
-import { RiXrpFill } from "react-icons/ri";
-import { useRouter } from "next/navigation";
-import Notification from "../components/Notification";
+import DashboardLayout from "../components/DashboardLayout";
 import axios from "axios";
 import { getUserToken } from "../components/storage";
 import BackendApi from "../components/BackendApi";
+import moment from "moment";
 
 export default function Overview() {
-  const router = useRouter();
   const [userData, setUserData] = useState({
     bitcoin: 0,
     ethereum: 0,
@@ -20,23 +15,29 @@ export default function Overview() {
     firstname: "",
     lastname: "",
   });
-  const [refreshing, setRefreshing] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [token, setToken] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
-  const [loading, setLoading] = useState(true);
+  const [currentTime, setCurrentTime] = useState(new Date());
 
   useEffect(() => {
-    setIsLoading(true);
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 1000);
+    const updateCurrentTime = () => {
+      setCurrentTime(new Date());
+    };
+    const timer = setInterval(updateCurrentTime, 60000); // Update every minute
+    return () => clearInterval(timer);
   }, []);
+
+  const greeting = () => {
+    const hour = currentTime.getHours();
+    if (hour < 12) return "Good Morning";
+    if (hour < 18) return "Good Afternoon";
+    return "Good Evening";
+  };
 
   const fetchData = async () => {
     try {
       const userToken = await getUserToken();
       setToken(userToken);
-      // console.log(token);
     } catch (error) {
       console.error("Error retrieving token:", error);
     }
@@ -47,139 +48,101 @@ export default function Overview() {
   }, []);
 
   const getData = async () => {
-    const data = { token };
     try {
-      const response = await axios.post(`${BackendApi}/userdata`, data);
+      const response = await axios.post(`${BackendApi}/userdata`, { token });
       const fetchedData = response.data.data;
-
-      // Set default values if the fetched data is zero
-      const updatedData = {
+      setUserData({
         bitcoin: fetchedData.bitcoin || 0,
         ethereum: fetchedData.ethereum || 0,
         balance: fetchedData.balance || 0,
         firstname: fetchedData.firstname || "",
         lastname: fetchedData.lastname || "",
-      };
-
-      setUserData(updatedData);
-      setLoading(false);
+      });
+      setIsLoading(false);
     } catch (error) {
       console.error("Error fetching data:", error);
-      setLoading(false);
+      setIsLoading(false);
     }
   };
 
   useEffect(() => {
-    if (token) {
-      const interval = setInterval(() => {
-        setRefreshing(true);
-        getData();
-      }, 1000);
-
-      return () => clearInterval(interval);
-    }
+    if (token) getData();
   }, [token]);
-
-  const roundedValue = (userData.balance * 0.000015).toFixed(6);
 
   return (
     <DashboardLayout>
-      <Notification />
-      <div className="bg-white space-y-8">
-        {/* Total Balance */}
-        <div className="bg-black2 p-6 rounded-lg">
-          <h1 className="text-2xl font-bold">Overview</h1>
-          <p className="text-lg text-gray-400">Total Balance</p>
-          <div className="flex">
-            <h2 className="text-4xl font-bold text-white mt-2">
-              {roundedValue}
-            </h2>
-            <span className="text-green-500 px-3 py-1 bg-green rounded-md ml-2 h-8 mt-4">
-              BTC
-            </span>
-          </div>
-          <p className="text-gray-400 mt-2">~ ${userData.balance}</p>
-        </div>
-        {/* Deposit and Withdrawal Buttons */}
-        <div className="flex justify-center mt-6 space-x-4">
-          <button
-            className="bg-bluey text-white px-6 py-2 rounded-md"
-            onClick={() => router.push("/deposit")}
-          >
-            Deposit
-          </button>
-          <button
-            className="px-4 py-2 bg-transparent hover:bg-bluey rounded-lg border"
-            onClick={() => router.push("/withdraw")}
-          >
-            Withdraw
-          </button>
+      <div className="space-y-8 bg-white p-4">
+        {/* Greeting and Date Section */}
+        <div className=" justify-between items-center lg:flex">
+          <h1 className="text-xl text-black font-semibold">
+            {greeting()}, {userData.firstname}
+          </h1>
+          <p className="text-black2">
+            {moment(currentTime).format("dddd, MMMM D, YYYY")}
+          </p>
         </div>
 
-        {/* Asset List Table */}
-        <div className="bg-black2 p-6 rounded-lg">
-          <table className="w-full table-auto">
-            <thead>
-              <tr className="text-gray-400 text-left">
-                <th className="pb-4">Asset</th>
-                <th className="pb-4">Total Balance</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr className="border-t border-gray-700">
-                <td className="py-4 flex items-center space-x-4">
-                  <SiTether className="text-2xl text-green" />
-                  <div>
-                    <p className="text-white">USDT</p>
-                    <p className="text-gray-400 text-sm">Tether</p>
-                  </div>
-                </td>
-                <td className="py-4">
-                  <p className="text-white">{userData.balance}</p>
-                  <p className="text-gray-400 text-sm">~ ${userData.balance}</p>
-                </td>
-              </tr>
-              <tr className="border-t border-gray-700">
-                <td className="py-4 flex items-center space-x-4">
-                  <FaBitcoin className="text-2xl text-orange" />
-                  <div>
-                    <p className="text-white">BTC</p>
-                    <p className="text-gray-400 text-sm">Bitcoin</p>
-                  </div>
-                </td>
-                <td className="py-4">
-                  <p className="text-white">{userData.bitcoin}</p>
-                  <p className="text-gray-400 text-sm">~ $0</p>
-                </td>
-              </tr>
-              <tr className="border-t border-gray-700">
-                <td className="py-4 flex items-center space-x-4">
-                  <FaEthereum className="text-2xl text-blue-500" />
-                  <div>
-                    <p className="text-white">ETH</p>
-                    <p className="text-gray-400 text-sm">Ethereum</p>
-                  </div>
-                </td>
-                <td className="py-4">
-                  <p className="text-white">{userData.ethereum}</p>
-                  <p className="text-gray-400 text-sm">~ $0</p>
-                </td>
-              </tr>
-              <tr className="border-t border-gray-700">
-                <td className="py-4 flex items-center space-x-4">
-                  <RiXrpFill className="text-2xl text-bluey" />
-                  <div>
-                    <p className="text-white">XRP</p>
-                    <p className="text-gray-400 text-sm">Ripple</p>
-                  </div>
-                </td>
-                <td className="py-4">
-                  <p className="text-white">0</p>
-                  <p className="text-gray-400 text-sm">~ $0</p>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+        {/* Cards Section */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          {/* Total Balance Card */}
+          <div className="bg-white2 shadow-lg p-6 rounded-lg text-center">
+            <p className="text-base text-black">Total Balance</p>
+            <h2 className="text-2xl font-bold text-black mt-2">
+              ${userData.balance}
+            </h2>
+          </div>
+
+          {/* Total Investment Card */}
+          <div className="bg-white2 shadow-lg p-6 rounded-lg text-center">
+            <p className="text-base text-black">Total Investment</p>
+            <h2 className="text-2xl font-bold text-black mt-2">$0</h2>
+          </div>
+
+          {/* Total Return Card */}
+          <div className="bg-white2 shadow-lg p-6 rounded-lg text-center">
+            <p className="text-base text-black">Total Return</p>
+            <h2 className="text-2xl font-bold text-black mt-2">$0</h2>
+          </div>
+        </div>
+
+        {/* Transactions and Cars Invested Section */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          {/* Transaction Details */}
+          <div className="bg-white2 shadow-lg p-6 rounded-lg">
+            <h2 className="text-lg font-semibold text-black">
+              Transaction Details
+            </h2>
+            {/* Transaction Table (add your transaction data here) */}
+            <table className="w-full table-auto mt-4 text-black">
+              <thead>
+                <tr className="text-left text-gray-400">
+                  <th className="pb-2">Date</th>
+                  <th className="pb-2">Amount</th>
+                  <th className="pb-2">Type</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr className="text-gray-400 border-t border-gray-600">
+                  <td className="py-2">N/A</td>
+                  <td className="py-2">N/A</td>
+                  <td className="py-2">N/A</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          {/* Cars Invested In */}
+          <div className="bg-white2 shadow-lg p-6 rounded-lg text-black">
+            <h2 className="text-lg font-semibold text-black">
+              Cars Invested In
+            </h2>
+            {/* Display Car Investments here */}
+            <div className="mt-4 space-y-4">
+              <p className="text-gray-400">
+                You haven't invested in any cars yet.
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </DashboardLayout>
