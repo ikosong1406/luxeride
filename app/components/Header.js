@@ -46,10 +46,10 @@ const Header = ({ children }) => {
             FAQ
           </span>
           <span
-            onClick={() => router.push("/market")}
+            onClick={() => router.push("/privacy")}
             className="hover:text-gray-400 cursor-pointer"
           >
-            Contact Us
+            Privacy Policy
           </span>
         </nav>
 
@@ -100,8 +100,8 @@ const Header = ({ children }) => {
             <Link href="/faq" className="hover:text-gray-400">
               FAQ
             </Link>
-            <Link href="/market" className="hover:text-gray-400">
-              Contact Us
+            <Link href="/privacy" className="hover:text-gray-400">
+              Privacy Policy
             </Link>
           </nav>
 
