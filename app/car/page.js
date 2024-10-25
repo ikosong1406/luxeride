@@ -9,30 +9,34 @@ import cars from "../components/Cars";
 export default function CarsPage() {
   return (
     <DashboardLayout>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 p-4 text-black">
+      <h1 className="text-2xl font-bold mb-6 text-black">Cars Collection</h1>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 text-black">
         {cars.map((car, index) => (
           <Link
-            href={`/car/${car.make.replace(/\s+/g, "-").toLowerCase()}`}
+            href={`/car/${car.model.replace(/\s+/g, "-").toLowerCase()}`}
             key={index}
             className="bg-white2 rounded-md overflow-hidden shadow-lg transition-transform transform hover:scale-105"
           >
             <div className="relative">
               <Image
-                src={car.image}
-                alt={car.name}
-                width={400}
+                src={car.mainImage}
+                alt={car.make}
+                width={300}
                 height={250}
-                className="w-full h-auto"
+                className="w-full h-3/6 rounded-lg"
               />
-              <div className="absolute top-2 left-2 bg-blue-600 text-white p-2 rounded-md">
-                {car.rentingPrice}
+              <div className="absolute top-5 left-5 bg-white2 text-black p-2 rounded-md text-xl">
+                <p>
+                  <span className="font-extrabold">${car.rentingPrice}</span>
+                  /Day
+                </p>
               </div>
             </div>
             <div className="p-4">
               <h2 className="text-xl font-semibold">
                 {car.make} {car.model}
               </h2>
-              <p className="text-gray-400">{car.purchasePrice}</p>
+              <p className="text-black2">Market Price: ${car.purchasePrice}</p>
             </div>
           </Link>
         ))}

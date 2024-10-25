@@ -1,84 +1,155 @@
 "use client";
 
-import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import { useParams } from "next/navigation";
 import Image from "next/image";
 import SwiperCore, { Navigation, Pagination } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper-bundle.css";
-import { useState } from "react";
 import Link from "next/link";
+import cars from "@/app/components/Cars";
 
 SwiperCore.use([Navigation, Pagination]);
 
-export default function CarDetails({ params }) {
-  const { carName } = params; // Access the carName from params
-  //   const carInfo = carDetails[carName];
+export default function CarDetails() {
+  const { carName } = useParams();
+  const [carDetails, setCarDetails] = useState(null);
 
-  //   // Handle case where carInfo is undefined
-  //   if (!carInfo) {
-  //     return (
-  //       <div className="container mx-auto p-4">
-  //         <h1 className="text-2xl font-bold">Car Not Found</h1>
-  //         <p className="mt-2">The car you are looking for does not exist.</p>
-  //       </div>
-  //     );
-  //   }
+  useEffect(() => {
+    // Ensure carName is defined before searching
+    if (carName) {
+      const model = carName.replace(/-/g, " ").toLowerCase();
+      const foundCar = cars.find((car) => car.model.toLowerCase() === model);
+      setCarDetails(foundCar || null); // Set car detail or null if not found
+    }
+  }, [carName]);
 
-  // Dummy data for car details
-  const carDetails = {
-    name: carName.replace(/-/g, " "),
-    images: [
-      "/images/car1.jpg",
-      "/images/car2.jpg",
-      "/images/car3.jpg",
-      "/images/car4.jpg",
-    ],
-    rentingPrice: "$1,500 - $3,000",
-    features: [
-      { icon: "🚗", feature: "Luxury interior" },
-      { icon: "⚡", feature: "High performance" },
-      { icon: "🔊", feature: "Premium sound system" },
-      { icon: "📱", feature: "Smart connectivity" },
-    ],
-    description:
-      "The Rolls-Royce Phantom is the epitome of luxury, offering unparalleled comfort and a smooth driving experience.",
-  };
+  // Show a loading state if carDetail has not been set yet
+  if (!carDetails) return <p>Loading...</p>;
 
   return (
-    <div className="p-6">
+    <div className="p-4 bg-white text-black">
       <Swiper navigation pagination>
-        {carDetails.images.map((img, index) => (
-          <SwiperSlide key={index}>
-            <div className="relative">
-              <Image
-                src={img}
-                alt={`Image ${index + 1}`}
-                width={600}
-                height={400}
-                className="w-full h-auto"
-              />
-              <div className="absolute top-2 left-2 bg-blue-600 text-white p-2 rounded-md">
-                {carDetails.rentingPrice}
-              </div>
+        <SwiperSlide>
+          <div className="relative">
+            <Image
+              src={carDetails.mainImage}
+              alt="car"
+              width={600}
+              height={400}
+              className="w-full h-auto rounded-3xl"
+            />
+            <div className="absolute top-5 left-5 bg-white2 text-black p-2 rounded-md text-xl">
+              <p>
+                <span className="font-extrabold">
+                  ${carDetails.rentingPrice}
+                </span>
+                /Day
+              </p>
             </div>
-          </SwiperSlide>
-        ))}
+          </div>
+        </SwiperSlide>
+        <SwiperSlide>
+          <div className="relative">
+            <Image
+              src={carDetails.additionalImages[0]}
+              alt="car"
+              width={600}
+              height={400}
+              className="w-full h-auto rounded-3xl"
+            />
+            <div className="absolute top-5 left-5 bg-white2 text-black p-2 rounded-md text-xl">
+              <p>
+                <span className="font-extrabold">
+                  ${carDetails.rentingPrice}
+                </span>
+                /Day
+              </p>
+            </div>
+          </div>
+        </SwiperSlide>
+        <SwiperSlide>
+          <div className="relative">
+            <Image
+              src={carDetails.additionalImages[1]}
+              alt="car"
+              width={600}
+              height={400}
+              className="w-full h-auto rounded-3xl"
+            />
+            <div className="absolute top-5 left-5 bg-white2 text-black p-2 rounded-md text-xl">
+              <p>
+                <span className="font-extrabold">
+                  ${carDetails.rentingPrice}
+                </span>
+                /Day
+              </p>
+            </div>
+          </div>
+        </SwiperSlide>
+        <SwiperSlide>
+          <div className="relative">
+            <Image
+              src={carDetails.additionalImages[2]}
+              alt="car"
+              width={600}
+              height={400}
+              className="w-full h-auto rounded-3xl"
+            />
+            <div className="absolute top-5 left-5 bg-white2 text-black p-2 rounded-md text-xl">
+              <p>
+                <span className="font-extrabold">
+                  ${carDetails.rentingPrice}
+                </span>
+                /Day
+              </p>
+            </div>
+          </div>
+        </SwiperSlide>
       </Swiper>
 
-      <h2 className="text-2xl font-semibold mt-4">{carDetails.name}</h2>
-      <h3 className="text-lg mt-2">Key Features</h3>
-      <ul className="list-disc ml-6">
-        {carDetails.features.map((feature, index) => (
-          <li key={index} className="flex items-center">
-            <span className="mr-2">{feature.icon}</span> {feature.feature}
-          </li>
-        ))}
-      </ul>
-      <p className="mt-4">{carDetails.description}</p>
+      <h2 className="text-2xl font-semibold mt-8">
+        {carDetails.make} {carDetails.model}
+      </h2>
+
+      {/* Key Features Section */}
+      <div className="grid grid-cols-3 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-8">
+        <div className="bg-white2 rounded-lg p-4 shadow-lg flex items-center">
+          <span className="mr-2">🗓️</span>
+          <span>{carDetails.year}</span>
+        </div>
+        <div className="bg-white2 rounded-lg p-4 shadow-lg flex items-center">
+          <span className="mr-2">🔧</span>
+          <span>{carDetails.engineType}</span>
+        </div>
+        <div className="bg-white2 rounded-lg p-4 shadow-lg flex items-center">
+          <span className="mr-2">⚙️</span>
+          <span>{carDetails.transmission}</span>
+        </div>
+        <div className="bg-white2 rounded-lg p-4 shadow-lg flex items-center">
+          <span className="mr-2">🚗</span>
+          <span>{carDetails.driveType}</span>
+        </div>
+        <div className="bg-white2 rounded-lg p-4 shadow-lg flex items-center">
+          <span className="mr-2">🐎</span>
+          <span>{carDetails.horsepower} HP</span>
+        </div>
+        <div className="bg-white2 rounded-lg p-4 shadow-lg flex items-center">
+          <span className="mr-2">💲</span>
+          <span>${carDetails.purchasePrice}</span>
+        </div>
+        <div className="bg-white2 rounded-lg p-4 shadow-lg flex items-center">
+          <span className="mr-2">📈</span>
+          <span>{carDetails.appreciationValue}%</span>
+        </div>
+      </div>
+
+      <h3 className="text-lg mt-8 font-extrabold">Details</h3>
+      <p className="mt-4 mb-14">{carDetails.description}</p>
 
       <Link
-        href={`/invest/${carDetails.name.replace(/\s+/g, "-").toLowerCase()}`}
-        className="fixed bottom-4 right-4 bg-bluey text-white p-4 rounded-md"
+        href={`/invest/${carDetails.model.replace(/\s+/g, "-").toLowerCase()}`}
+        className="fixed bottom-4 right-4 bg-blue text-white p-4 rounded-md"
         style={{ width: "50%" }}
       >
         Invest Now
