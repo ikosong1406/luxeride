@@ -66,7 +66,7 @@ export default function HomePage() {
               animate={{ scale: 1 }}
               transition={{ delay: 0.6, duration: 0.6 }}
             >
-              Investing Today
+              Get Started
             </motion.button>
           </div>
         </motion.section>
