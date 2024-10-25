@@ -116,31 +116,31 @@ export default function CarDetails() {
       <div className="grid grid-cols-3 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-8">
         <div className="bg-white2 rounded-lg p-4 shadow-lg flex items-center">
           <span className="mr-2">🗓️</span>
-          <span>{carDetails.year}</span>
+          <p>{carDetails.year}</p>
         </div>
         <div className="bg-white2 rounded-lg p-4 shadow-lg flex items-center">
           <span className="mr-2">🔧</span>
-          <span>{carDetails.engineType}</span>
+          <p>{carDetails.engineType}</p>
         </div>
         <div className="bg-white2 rounded-lg p-4 shadow-lg flex items-center">
           <span className="mr-2">⚙️</span>
-          <span>{carDetails.transmission}</span>
+          <p>{carDetails.transmission}</p>
         </div>
         <div className="bg-white2 rounded-lg p-4 shadow-lg flex items-center">
           <span className="mr-2">🚗</span>
-          <span>{carDetails.driveType}</span>
+          <p>{carDetails.driveType}</p>
         </div>
         <div className="bg-white2 rounded-lg p-4 shadow-lg flex items-center">
           <span className="mr-2">🐎</span>
-          <span>{carDetails.horsepower} HP</span>
+          <p>{carDetails.horsepower} HP</p>
         </div>
         <div className="bg-white2 rounded-lg p-4 shadow-lg flex items-center">
           <span className="mr-2">💲</span>
-          <span>${carDetails.purchasePrice}</span>
+          <p>${carDetails.purchasePrice}</p>
         </div>
         <div className="bg-white2 rounded-lg p-4 shadow-lg flex items-center">
           <span className="mr-2">📈</span>
-          <span>{carDetails.appreciationValue}%</span>
+          <p>{carDetails.appreciationValue}%</p>
         </div>
       </div>
 
