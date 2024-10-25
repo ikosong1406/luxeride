@@ -7,6 +7,9 @@ import Image from "next/image";
 import cars from "@/app/components/Cars";
 import DashboardLayout from "@/app/components/DashboardLayout";
 import logo from "../../images/logo.png";
+import axios from "axios";
+import { getUserToken } from "@/app/components/storage";
+import BackendApi from "@/app/components/BackendApi";
 
 export default function InvestPage() {
   const { carName } = useParams();
@@ -30,6 +33,47 @@ export default function InvestPage() {
   const shareHolding = (investmentAmount / purchasePrice) * 100;
   const estimatedProfit = rent * (shareHolding / 100);
   const totalReturns = investmentAmount + 730 * estimatedProfit;
+
+  const [userData, setUserData] = useState({
+    balance: 0,
+    firstname: "",
+    lastname: "",
+  });
+  const [isLoading, setIsLoading] = useState(true);
+  const [token, setToken] = useState(null);
+
+  const fetchData = async () => {
+    try {
+      const userToken = await getUserToken();
+      setToken(userToken);
+    } catch (error) {
+      console.error("Error retrieving token:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const getData = async () => {
+    try {
+      const response = await axios.post(`${BackendApi}/userdata`, { token });
+      const fetchedData = response.data.data;
+      setUserData({
+        balance: fetchedData.balance || 0,
+        firstname: fetchedData.firstname || "",
+        lastname: fetchedData.lastname || "",
+      });
+      setIsLoading(false);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+      setIsLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    if (token) getData();
+  }, [token]);
 
   // Show a loading state if carDetail has not been set yet
   if (!carDetails) return <p>Loading...</p>;
@@ -85,7 +129,7 @@ export default function InvestPage() {
           </div>
 
           <div className="mb-4 border-t border-gray-300 pt-4">
-            <h3 className="font-bold text-lg">Dear alex,</h3>
+            <h3 className="font-bold text-lg">Dear {userData.firstname},</h3>
             <p>
               Thank you for choosing to invest in our luxury car. Below are the
               details of your investment.
