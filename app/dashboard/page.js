@@ -6,6 +6,13 @@ import axios from "axios";
 import { getUserToken } from "../components/storage";
 import BackendApi from "../components/BackendApi";
 import moment from "moment";
+import {
+  FaBitcoin,
+  FaEthereum,
+  FaWallet,
+  FaChartLine,
+  FaCoins,
+} from "react-icons/fa";
 
 export default function Overview() {
   const [userData, setUserData] = useState({
@@ -14,6 +21,8 @@ export default function Overview() {
     balance: 0,
     firstname: "",
     lastname: "",
+    transactions: [], // Store transaction data here
+    carsInvested: [], // Store car investments here
   });
   const [isLoading, setIsLoading] = useState(true);
   const [token, setToken] = useState(null);
@@ -57,6 +66,8 @@ export default function Overview() {
         balance: fetchedData.balance || 0,
         firstname: fetchedData.firstname || "",
         lastname: fetchedData.lastname || "",
+        transactions: fetchedData.transactions || [],
+        carsInvested: fetchedData.carsInvested || [],
       });
       setIsLoading(false);
     } catch (error) {
@@ -71,13 +82,13 @@ export default function Overview() {
 
   return (
     <DashboardLayout>
-      <div className="space-y-8 bg-white p-2">
+      <div className="space-y-8 bg-white p-4 text-black">
         {/* Greeting and Date Section */}
         <div className=" justify-between items-center lg:flex">
           <h1 className="text-xl text-black font-semibold">
             {greeting()}, {userData.firstname}
           </h1>
-          <p className="text-black2">
+          <p className="text-gray-500">
             {moment(currentTime).format("dddd, MMMM D, YYYY")}
           </p>
         </div>
@@ -85,23 +96,32 @@ export default function Overview() {
         {/* Cards Section */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Total Balance Card */}
-          <div className="bg-white2 shadow-lg p-6 rounded-lg text-center">
-            <p className="text-base text-black">Total Balance</p>
-            <h2 className="text-2xl font-bold text-black mt-2">
-              ${userData.balance}
-            </h2>
+          <div className="bg-white2 shadow-lg p-6 rounded-lg text-center flex justify-center">
+            <FaWallet className="text-5xl text-blue mb-2 self-center" />
+            <div className="ml-12">
+              <p className="text-base text-black">Total Balance</p>
+              <h2 className="text-2xl font-bold text-black mt-2">
+                ${userData.balance}
+              </h2>
+            </div>
           </div>
 
           {/* Total Investment Card */}
-          <div className="bg-white2 shadow-lg p-6 rounded-lg text-center">
-            <p className="text-base text-black">Total Investment</p>
-            <h2 className="text-2xl font-bold text-black mt-2">$0</h2>
+          <div className="bg-white2 shadow-lg p-6 rounded-lg text-center flex justify-center">
+            <FaChartLine className="text-5xl text-green mb-2" />
+            <div className="ml-12">
+              <p className="text-base text-black">Total Investment</p>
+              <h2 className="text-2xl font-bold text-black mt-2">$0</h2>
+            </div>
           </div>
 
           {/* Total Return Card */}
-          <div className="bg-white2 shadow-lg p-6 rounded-lg text-center">
-            <p className="text-base text-black">Total Return</p>
-            <h2 className="text-2xl font-bold text-black mt-2">$0</h2>
+          <div className="bg-white2 shadow-lg p-6 rounded-lg text-center flex justify-center">
+            <FaCoins className="text-5xl text-orange mb-2" />
+            <div className="ml-12">
+              <p className="text-base text-black">Total Return</p>
+              <h2 className="text-2xl font-bold text-black mt-2">$0</h2>
+            </div>
           </div>
         </div>
 
@@ -112,7 +132,6 @@ export default function Overview() {
             <h2 className="text-lg font-semibold text-black">
               Transaction Details
             </h2>
-            {/* Transaction Table (add your transaction data here) */}
             <table className="w-full table-auto mt-4 text-black">
               <thead>
                 <tr className="text-left text-gray-400">
@@ -122,11 +141,25 @@ export default function Overview() {
                 </tr>
               </thead>
               <tbody>
-                <tr className="text-gray-400 border-t border-gray-600">
-                  <td className="py-2">N/A</td>
-                  <td className="py-2">N/A</td>
-                  <td className="py-2">N/A</td>
-                </tr>
+                {userData.transactions.slice(0, 5).map((transaction, index) => (
+                  <tr
+                    key={index}
+                    className="text-gray-500 border-t border-gray-200"
+                  >
+                    <td className="py-2">
+                      {moment(transaction.date).format("MM/DD/YYYY")}
+                    </td>
+                    <td className="py-2">${transaction.amount}</td>
+                    <td className="py-2">{transaction.type}</td>
+                  </tr>
+                ))}
+                {userData.transactions.length === 0 && (
+                  <tr className="text-gray-500 border-t border-gray-200">
+                    <td className="py-2" colSpan="3">
+                      No transactions available
+                    </td>
+                  </tr>
+                )}
               </tbody>
             </table>
           </div>
@@ -136,11 +169,18 @@ export default function Overview() {
             <h2 className="text-lg font-semibold text-black">
               Cars Invested In
             </h2>
-            {/* Display Car Investments here */}
             <div className="mt-4 space-y-4">
-              <p className="text-gray-400">
-                You haven't invested in any cars yet.
-              </p>
+              {userData.carsInvested.slice(0, 5).map((car, index) => (
+                <div key={index} className="flex justify-between text-gray-500">
+                  <span>{car.name}</span>
+                  <span>${car.amountInvested}</span>
+                </div>
+              ))}
+              {userData.carsInvested.length === 0 && (
+                <p className="text-gray-400">
+                  You haven't invested in any cars yet.
+                </p>
+              )}
             </div>
           </div>
         </div>
