@@ -33,11 +33,12 @@ const cars = [
     driveType: "AWD",
     horsepower: 542,
     appreciationValue: 4,
-    mainImage: "/images/bentley_continental_gt.jpg",
+    mainImage:
+      "https://res.cloudinary.com/duqlw2kta/image/upload/v1729876326/download_2_jctmbk.jpg",
     additionalImages: [
-      "/images/bentley_continental_gt_2.jpg",
-      "/images/bentley_continental_gt_3.jpg",
-      "/images/bentley_continental_gt_4.jpg",
+      "https://res.cloudinary.com/duqlw2kta/image/upload/v1729876328/download_1_dojb9d.jpg",
+      "https://res.cloudinary.com/duqlw2kta/image/upload/v1729876328/Bentley_looks_towards_an_electrified_grand_touring_future_with_its_twin_release_tvjlus.jpg",
+      "https://res.cloudinary.com/duqlw2kta/image/upload/v1729876332/2025_Bentley_Continental_GT__A_Blend_of_Luxury_and_Performance___Bentley_Continental_GT_Review_mpkqfi.jpg",
     ],
     description: [
       "The 2023 Bentley Continental GT exemplifies refined power and elegance, seamlessly merging British craftsmanship with contemporary design. Under its hood, the potent V8 engine provides exhilarating performance, while the sophisticated all-wheel drive ensures unparalleled handling.",
