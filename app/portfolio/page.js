@@ -146,7 +146,7 @@ export default function Portfolio() {
                   <h2 className="text-xl font-semibold">{asset.name}</h2>
                 </div>
               </div>
-              <div className="mt-4">
+              <div className="mt-2">
                 <p className="text-gray-600">Percentage: {asset.share}%</p>
                 <p className="text-gray-600">Price: ${asset.amount}</p>
                 <p className="text-green-600">

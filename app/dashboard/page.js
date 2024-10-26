@@ -6,6 +6,7 @@ import axios from "axios";
 import { getUserToken } from "../components/storage";
 import BackendApi from "../components/BackendApi";
 import moment from "moment";
+import Image from "next/image";
 import {
   FaArrowDown,
   FaArrowUp,
@@ -198,21 +199,42 @@ export default function Overview() {
           </div>
 
           {/* Cars Invested In */}
-          <div className="bg-white2 shadow-lg p-6 rounded-lg text-black">
-            <h2 className="text-lg font-semibold text-black">
+          <div className="text-black">
+            <h2 className="text-xl font-semibold text-black">
               Cars Invested In
             </h2>
             <div className="mt-4 space-y-4">
-              {userData.portfolio.slice(0, 5).map((car, index) => (
-                <div key={index} className="flex justify-between text-gray-500">
-                  <span>{car.name}</span>
-                  <span>${car.amountInvested}</span>
-                </div>
-              ))}
-              {userData.portfolio.length === 0 && (
-                <p className="text-gray-400">
-                  You haven't invested in any cars yet.
-                </p>
+              {userData.portfolio.length === 0 ? (
+                <p className="text-gray-400">No assets available.</p>
+              ) : (
+                userData.portfolio.map((asset, index) => (
+                  <div
+                    key={index}
+                    className="bg-white2 rounded-lg shadow-md p-4 mb-4"
+                  >
+                    <div className="flex items-center space-x-4">
+                      <Image
+                        src={asset.picture}
+                        alt={asset.name}
+                        width={40}
+                        height={40}
+                        className="rounded-full"
+                      />
+                      <div className="flex-1">
+                        <h2 className="text-xl font-semibold">{asset.name}</h2>
+                      </div>
+                    </div>
+                    <div className="mt-2">
+                      <p className="text-gray-600">
+                        Percentage: {asset.share}%
+                      </p>
+                      <p className="text-gray-600">Price: ${asset.amount}</p>
+                      <p className="text-green-600">
+                        Estimated Profit: ${asset.profit}/Day
+                      </p>
+                    </div>
+                  </div>
+                ))
               )}
             </div>
           </div>
