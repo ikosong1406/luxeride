@@ -83,7 +83,7 @@ export default function Profile() {
 
         {/* Verified status */}
         <div className="flex items-center space-x-2">
-          {userData.isVerified ? (
+          {userData.status == "verified" ? (
             <div className="flex items-center text-green">
               <FaCheckCircle className="mr-2" />
               <span>Verified</span>
@@ -175,7 +175,7 @@ export default function Profile() {
           className="bg-blue p-2 rounded-md text-white w-full font-semibold mt-4"
           onClick={handleChangePassword}
         >
-          Change Password
+          Save Changes
         </button>
       </div>
     </DashboardLayout>
