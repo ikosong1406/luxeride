@@ -91,7 +91,7 @@ export default function DashboardLayout({ children }) {
               }`}
             >
               <FaCar />
-              <span>Car Investments</span>
+              <span>Car Collection</span>
             </span>
             <span
               onClick={() => router.push("/deposit")}
