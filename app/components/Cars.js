@@ -56,11 +56,12 @@ const cars = [
     driveType: "AWD",
     horsepower: 730,
     appreciationValue: 6,
-    mainImage: "/images/lamborghini_aventador.jpg",
+    mainImage:
+      "https://res.cloudinary.com/duqlw2kta/image/upload/v1729945584/Lamborghini_Aventador_S_Wheels_Vehicle_Gallery_zrvx0r.jpg",
     additionalImages: [
-      "/images/lamborghini_aventador_2.jpg",
-      "/images/lamborghini_aventador_3.jpg",
-      "/images/lamborghini_aventador_4.jpg",
+      "https://res.cloudinary.com/duqlw2kta/image/upload/v1729945583/download_2_pzulgx.jpg",
+      "https://res.cloudinary.com/duqlw2kta/image/upload/v1729945583/download_1_cavbhm.jpg",
+      "https://res.cloudinary.com/duqlw2kta/image/upload/v1729945583/Interior_of_the_Lamborghini_Aventador_Super_Veloce_Jota_Roadster_painted_in_Grigio_Titans_Photo_taken_by__jeremy_lhj_on_Instagram_zkbvof.jpg",
     ],
     description: [
       "The Lamborghini Aventador 2023 redefines performance with its aggressive styling and roaring V12 engine, delivering a top-tier supercar experience. The Aventador is built for speed, with a finely tuned all-wheel-drive system that makes it as agile as it is powerful.",
@@ -78,11 +79,12 @@ const cars = [
     driveType: "RWD",
     horsepower: 710,
     appreciationValue: 7,
-    mainImage: "/images/ferrari_488_pista.jpg",
+    mainImage:
+      "https://res.cloudinary.com/duqlw2kta/image/upload/v1729946034/Ferrari_488_pista_1_bbmqbb.jpg",
     additionalImages: [
-      "/images/ferrari_488_pista_2.jpg",
-      "/images/ferrari_488_pista_3.jpg",
-      "/images/ferrari_488_pista_4.jpg",
+      "https://res.cloudinary.com/duqlw2kta/image/upload/v1729946034/Interior_of_the_Ferrari_488_Pista_painted_in_the_tailor_made_color_Bianco_Liana_w__central_stripes_painted_in_Rosso_Coburn_Photo_posted_by__ferraritailormade_on_Instagram_lmrp7k.jpg",
+      "https://res.cloudinary.com/duqlw2kta/image/upload/v1729946034/Ferrari_488_Pista_doc0qv.jpg",
+      "https://res.cloudinary.com/duqlw2kta/image/upload/v1729946034/Ferrari_488_Pista_-_L_ART_DE_L_AUTOMOBILE_-_France_ud9ksr.jpg",
     ],
     description: [
       "The Ferrari 488 Pista 2023 is an embodiment of raw power and dynamic performance, taking the iconic Ferrari design language to new heights. Its turbocharged V8 engine offers breathtaking acceleration and responsiveness, ensuring that every drive is exhilarating.",
@@ -100,11 +102,12 @@ const cars = [
     driveType: "RWD",
     horsepower: 503,
     appreciationValue: 4,
-    mainImage: "/images/aston_martin_db11.jpg",
+    mainImage:
+      "https://res.cloudinary.com/duqlw2kta/image/upload/v1729946599/Midnight_Blue_Aston_Martin__Urban_Elegance_in_Motion_cblfjp.jpg",
     additionalImages: [
-      "/images/aston_martin_db11_2.jpg",
-      "/images/aston_martin_db11_3.jpg",
-      "/images/aston_martin_db11_4.jpg",
+      "https://res.cloudinary.com/duqlw2kta/image/upload/v1729946599/download_1_hzab6h.jpg",
+      "https://res.cloudinary.com/duqlw2kta/image/upload/v1729946599/ASTON_MARTIN_DB11_INTERIOR_SEATS_lqpmdt.jpg",
+      "https://res.cloudinary.com/duqlw2kta/image/upload/v1729946599/Aston_Martin_D11_yqdugm.jpg",
     ],
     description: [
       "The Aston Martin DB11 2023 is a stunning blend of elegance and performance, showcasing the brand’s commitment to craftsmanship and innovation. Its powerful V8 engine delivers exhilarating performance while maintaining a level of sophistication that is unmistakably Aston Martin.",
@@ -112,43 +115,22 @@ const cars = [
     ],
   },
   {
-    make: "Porsche",
-    model: "911 Turbo S",
-    year: 2023,
-    purchasePrice: 230000,
-    rentingPrice: 800,
-    engineType: "Flat-6",
-    transmission: "Automatic",
-    driveType: "AWD",
-    horsepower: 640,
-    appreciationValue: 3,
-    mainImage: "/images/porsche_911_turbo_s.jpg",
-    additionalImages: [
-      "/images/porsche_911_turbo_s_2.jpg",
-      "/images/porsche_911_turbo_s_3.jpg",
-      "/images/porsche_911_turbo_s_4.jpg",
-    ],
-    description: [
-      "The 2023 Porsche 911 Turbo S epitomizes the perfect balance between performance and everyday usability. With a robust flat-6 engine that generates impressive horsepower, the Turbo S delivers blistering acceleration and exceptional handling capabilities.",
-      "Its iconic design is complemented by a luxurious interior that features cutting-edge technology and high-quality materials. Whether on the track or the road, the 911 Turbo S offers an exhilarating driving experience that is both thrilling and refined.",
-    ],
-  },
-  {
     make: "Mercedes-Benz",
-    model: "S-Class",
+    model: "SClass",
     year: 2023,
     purchasePrice: 120000,
-    rentingPrice: 500,
+    rentingPrice: 800,
     engineType: "I6",
     transmission: "Automatic",
     driveType: "AWD",
     horsepower: 429,
     appreciationValue: 2,
-    mainImage: "/images/mercedes_benz_s_class.jpg",
+    mainImage:
+      "https://res.cloudinary.com/duqlw2kta/image/upload/v1729949280/Mercedes_E63_AMG_distht.jpg",
     additionalImages: [
-      "/images/mercedes_benz_s_class_2.jpg",
-      "/images/mercedes_benz_s_class_3.jpg",
-      "/images/mercedes_benz_s_class_4.jpg",
+      "https://res.cloudinary.com/duqlw2kta/image/upload/v1729949280/Mercedes-Benz_S-Class_W223_2021_gtjs1v.jpg",
+      "https://res.cloudinary.com/duqlw2kta/image/upload/v1729949281/download_1_aqnhcv.jpg",
+      "https://res.cloudinary.com/duqlw2kta/image/upload/v1729949281/Mercedes_k8yrlv.jpg",
     ],
     description: [
       "The 2023 Mercedes-Benz S-Class is the pinnacle of luxury sedans, featuring state-of-the-art technology and unparalleled comfort. With a powerful inline-six engine, the S-Class offers smooth acceleration and an incredibly refined ride.",
@@ -166,11 +148,12 @@ const cars = [
     driveType: "RWD",
     horsepower: 335,
     appreciationValue: 2,
-    mainImage: "/images/bmw_7_series.jpg",
+    mainImage:
+      "https://res.cloudinary.com/duqlw2kta/image/upload/v1729948838/Nuova_BMW_Serie_7_mpmwoq.jpg",
     additionalImages: [
-      "/images/bmw_7_series_2.jpg",
-      "/images/bmw_7_series_3.jpg",
-      "/images/bmw_7_series_4.jpg",
+      "https://res.cloudinary.com/duqlw2kta/image/upload/v1729948838/Could_the_BMW_7_Series_be_your_next_work_space____IndesignLive_zggsna.jpg",
+      "https://res.cloudinary.com/duqlw2kta/image/upload/v1729948837/bmw_7_series_2023_nkqxva.jpg",
+      "https://res.cloudinary.com/duqlw2kta/image/upload/v1729948836/BMW_8_Series_can_over-the-air_update_from_your_smartphone_zi5ee0.jpg",
     ],
     description: [
       "The 2023 BMW 7 Series redefines luxury with its cutting-edge design and innovative technology. Its inline-six engine delivers a harmonious balance of power and efficiency, making it a top choice for discerning drivers.",
@@ -188,11 +171,12 @@ const cars = [
     driveType: "AWD",
     horsepower: 1020,
     appreciationValue: 3,
-    mainImage: "/images/tesla_model_s.jpg",
+    mainImage:
+      "https://res.cloudinary.com/duqlw2kta/image/upload/v1729948163/New_Top_30_Tesla_Model_S_Cars_2025_b0wzxp.jpg",
     additionalImages: [
-      "/images/tesla_model_s_2.jpg",
-      "/images/tesla_model_s_3.jpg",
-      "/images/tesla_model_s_4.jpg",
+      "https://res.cloudinary.com/duqlw2kta/image/upload/v1729948163/This_is_the_new_interior_of_Tesla_s_Model_S_and_Model_X___TechCrunch_rvxiuf.jpg",
+      "https://res.cloudinary.com/duqlw2kta/image/upload/v1729948163/Tesla_Model_S_Premium_Electric_Car_Editorial_Photo_-_Image_of_vehicles_luxury__65998516_kzh7in.jpg",
+      "https://res.cloudinary.com/duqlw2kta/image/upload/v1729948164/New_Tesla_Model_S_refresh_2021_gduyqh.jpg",
     ],
     description: [
       "The 2023 Tesla Model S represents the forefront of electric vehicle technology, delivering impressive performance and long-range capabilities. With its dual-motor all-wheel drive system, the Model S accelerates from 0 to 60 mph in just 1.99 seconds, redefining speed in the electric vehicle market.",
@@ -210,11 +194,12 @@ const cars = [
     driveType: "RWD",
     horsepower: 710,
     appreciationValue: 5,
-    mainImage: "/images/mclaren_720s.jpg",
+    mainImage:
+      "https://res.cloudinary.com/duqlw2kta/image/upload/v1729947722/download_1_ppxbm0.jpg",
     additionalImages: [
-      "/images/mclaren_720s_2.jpg",
-      "/images/mclaren_720s_3.jpg",
-      "/images/mclaren_720s_4.jpg",
+      "https://res.cloudinary.com/duqlw2kta/image/upload/v1729947722/McLaren_720s_unb7gw.jpg",
+      "https://res.cloudinary.com/duqlw2kta/image/upload/v1729947721/download_2_wmvkyb.jpg",
+      "https://res.cloudinary.com/duqlw2kta/image/upload/v1729947721/McLaren_GT_interior__sntsoy.jpg",
     ],
     description: [
       "The 2023 McLaren 720S is a breathtaking supercar that showcases the brand's commitment to performance and aerodynamics. With its lightweight construction and twin-turbocharged V8 engine, the 720S delivers astonishing acceleration and agility on the track.",
@@ -232,11 +217,12 @@ const cars = [
     driveType: "AWD",
     horsepower: 1500,
     appreciationValue: 10,
-    mainImage: "/images/bugatti_chiron.jpg",
+    mainImage:
+      "https://res.cloudinary.com/duqlw2kta/image/upload/v1729947058/CHIRON_EDITION_NOIRE_unmjtt.jpg",
     additionalImages: [
-      "/images/bugatti_chiron_2.jpg",
-      "/images/bugatti_chiron_3.jpg",
-      "/images/bugatti_chiron_4.jpg",
+      "https://res.cloudinary.com/duqlw2kta/image/upload/v1729947059/BUGATTI_FAN_CLUB_on_Instagram__Bugatti_Chiron_Sport_Noire_Follow_bugatti_fanclub_supercarsinmanchest___Bugatti_chiron_Super_cars_Sports_car_ihfpw2.jpg",
+      "https://res.cloudinary.com/duqlw2kta/image/upload/v1729947058/download_3_gbynl5.jpg",
+      "https://res.cloudinary.com/duqlw2kta/image/upload/v1729947058/download_2_emlazt.jpg",
     ],
     description: [
       "The Bugatti Chiron 2023 is the pinnacle of automotive engineering, combining unparalleled performance with breathtaking design. Powered by a quad-turbocharged W16 engine, it produces an astounding 1500 horsepower, allowing it to reach speeds that defy belief.",
