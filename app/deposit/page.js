@@ -145,17 +145,18 @@ export default function Deposit() {
           </h2>
           <QRCode
             value={walletAddresses[selectedCoin]}
-            size={200}
+            size={150}
             className="mx-auto mb-4 border-2"
           />
-          <p className="mt-8 text-lg" style={{ width: "100%" }}>
-            {walletAddresses[selectedCoin]}
-          </p>
+
+          <div style={{ width: "100%" }} className="flex justify-center mt-8">
+            <p className="text-same">{walletAddresses[selectedCoin]}</p>
+          </div>
           <button
             className="p-2 bg-blue text-white rounded-lg mt-10"
             onClick={handleConfirmClick}
           >
-            I have made the deposit
+            Deposit Made
           </button>
         </section>
       </div>
