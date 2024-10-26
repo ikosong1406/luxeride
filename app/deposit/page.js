@@ -148,7 +148,7 @@ export default function Deposit() {
             size={200}
             className="mx-auto mb-4 border-2"
           />
-          <p className="mb-4 text-lg">{walletAddresses[selectedCoin]}</p>
+          <p className="mb-4 text-base">{walletAddresses[selectedCoin]}</p>
           <button
             className="p-2 bg-blue text-white rounded-lg mt-10"
             onClick={handleConfirmClick}

@@ -52,7 +52,7 @@ export default function CarDetails() {
               className="w-full h-auto rounded-3xl"
             />
             <div className="absolute top-5 left-5 bg-white2 text-black p-2 rounded-md text-xl">
-              <p>
+              <p className="text-lg">
                 <span className="font-extrabold">
                   ${carDetails.rentingPrice}
                 </span>
@@ -71,7 +71,7 @@ export default function CarDetails() {
               className="w-full h-auto rounded-3xl"
             />
             <div className="absolute top-5 left-5 bg-white2 text-black p-2 rounded-md text-xl">
-              <p>
+              <p className="text-lg">
                 <span className="font-extrabold">
                   ${carDetails.rentingPrice}
                 </span>
@@ -90,7 +90,7 @@ export default function CarDetails() {
               className="w-full h-auto rounded-3xl"
             />
             <div className="absolute top-5 left-5 bg-white2 text-black p-2 rounded-md text-xl">
-              <p>
+              <p className="text-lg">
                 <span className="font-extrabold">
                   ${carDetails.rentingPrice}
                 </span>
@@ -109,7 +109,7 @@ export default function CarDetails() {
               className="w-full h-auto rounded-3xl"
             />
             <div className="absolute top-5 left-5 bg-white2 text-black p-2 rounded-md text-xl">
-              <p>
+              <p className="text-lg">
                 <span className="font-extrabold">
                   ${carDetails.rentingPrice}
                 </span>
@@ -125,7 +125,7 @@ export default function CarDetails() {
       </h2>
 
       {/* Key Features Section */}
-      <div className="grid grid-cols-3 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-8">
+      <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-8">
         <div className="bg-white2 rounded-lg p-4 shadow-lg flex items-center">
           <span className="mr-2">🗓️</span>
           <p className="text-base">{carDetails.year}</p>

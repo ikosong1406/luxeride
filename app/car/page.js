@@ -26,7 +26,7 @@ export default function CarsPage() {
                 className="w-full h-3/6 rounded-lg"
               />
               <div className="absolute top-5 left-5 bg-white2 text-black p-2 rounded-md text-xl">
-                <p>
+                <p className="text-lg">
                   <span className="font-extrabold">${car.rentingPrice}</span>
                   /Day
                 </p>
