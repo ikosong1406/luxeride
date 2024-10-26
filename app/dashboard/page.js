@@ -16,13 +16,13 @@ import {
 
 export default function Overview() {
   const [userData, setUserData] = useState({
-    bitcoin: 0,
-    ethereum: 0,
-    balance: 0,
     firstname: "",
     lastname: "",
-    transactions: [], // Store transaction data here
-    carsInvested: [], // Store car investments here
+    totalBalance: 0,
+    totalInvestment: 0,
+    totalReturn: 0,
+    portfolio: [],
+    transactions: [],
   });
   const [isLoading, setIsLoading] = useState(true);
   const [token, setToken] = useState(null);
@@ -61,13 +61,13 @@ export default function Overview() {
       const response = await axios.post(`${BackendApi}/userdata`, { token });
       const fetchedData = response.data.data;
       setUserData({
-        bitcoin: fetchedData.bitcoin || 0,
-        ethereum: fetchedData.ethereum || 0,
-        balance: fetchedData.balance || 0,
         firstname: fetchedData.firstname || "",
         lastname: fetchedData.lastname || "",
+        totalBalance: fetchedData.totalBalance || 0,
+        totalInvestment: fetchedData.totalInvestment || 0,
+        totalReturn: fetchedData.totalReturn || 0,
         transactions: fetchedData.transactions || [],
-        carsInvested: fetchedData.carsInvested || [],
+        portfolio: fetchedData.carsInvested || [],
       });
       setIsLoading(false);
     } catch (error) {
@@ -101,7 +101,7 @@ export default function Overview() {
             <div className="ml-12">
               <p className="text-base text-black">Total Balance</p>
               <h2 className="text-2xl font-bold text-black mt-2">
-                ${userData.balance}
+                ${userData.totalBalance}
               </h2>
             </div>
           </div>
@@ -111,7 +111,9 @@ export default function Overview() {
             <FaChartLine className="text-5xl text-green mb-2" />
             <div className="ml-12">
               <p className="text-base text-black">Total Investment</p>
-              <h2 className="text-2xl font-bold text-black mt-2">$0</h2>
+              <h2 className="text-2xl font-bold text-black mt-2">
+                ${userData.totalInvestment}
+              </h2>
             </div>
           </div>
 
@@ -120,7 +122,9 @@ export default function Overview() {
             <FaCoins className="text-5xl text-orange mb-2" />
             <div className="ml-12">
               <p className="text-base text-black">Total Return</p>
-              <h2 className="text-2xl font-bold text-black mt-2">$0</h2>
+              <h2 className="text-2xl font-bold text-black mt-2">
+                ${userData.totalReturn}
+              </h2>
             </div>
           </div>
         </div>
@@ -170,13 +174,13 @@ export default function Overview() {
               Cars Invested In
             </h2>
             <div className="mt-4 space-y-4">
-              {userData.carsInvested.slice(0, 5).map((car, index) => (
+              {userData.portfolio.slice(0, 5).map((car, index) => (
                 <div key={index} className="flex justify-between text-gray-500">
                   <span>{car.name}</span>
                   <span>${car.amountInvested}</span>
                 </div>
               ))}
-              {userData.carsInvested.length === 0 && (
+              {userData.portfolio.length === 0 && (
                 <p className="text-gray-400">
                   You haven't invested in any cars yet.
                 </p>
