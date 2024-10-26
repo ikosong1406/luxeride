@@ -134,12 +134,12 @@ export default function Deposit() {
             {selectedCoin === "usdt" ? (
               <>
                 <SiTether className="inline-block text-green mr-2" />
-                USDT Wallet Address (Network: ERC20)
+                Network: ERC20
               </>
             ) : (
               <>
                 <FaBitcoin className="inline-block text-orange mr-2" />
-                Bitcoin Wallet Address (Network: BTC)
+                Network: BTC
               </>
             )}
           </h2>
