@@ -1,26 +1,92 @@
 // pages/dashboard/withdrawal.js
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import DashboardLayout from "../components/DashboardLayout";
+import axios from "axios";
+import BackendApi from "../components/BackendApi";
+import { getUserToken } from "../components/storage";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function Withdrawal() {
   const [amount, setAmount] = useState("");
   const [walletAddress, setWalletAddress] = useState("");
   const [selectedCoin, setSelectedCoin] = useState("usdt");
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [userData, setUserData] = useState([]);
+  const [refreshing, setRefreshing] = useState(false);
+  const [token, setToken] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
-  const handleContinue = () => {
-    if (amount && walletAddress) {
-      setIsModalOpen(true); // Show the confirmation modal
+  useEffect(() => {
+    setIsLoading(true);
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 1000);
+  }, []);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const userToken = await getUserToken();
+        setToken(userToken);
+        // console.log(token);
+      } catch (error) {
+        console.error("Error retrieving token:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  const getData = async () => {
+    const data = {
+      token,
+    };
+    try {
+      // console.log(token);
+      const response = await axios.post(`${BackendApi}/userdata`, data);
+      setUserData(response.data.data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
     }
   };
 
-  const handleCloseModal = () => {
-    setIsModalOpen(false); // Close the modal
+  useEffect(() => {
+    if (token) {
+      const interval = setInterval(() => {
+        setRefreshing(true);
+        getData();
+      }, 1000);
+
+      return () => clearInterval(interval);
+    }
+  }, [token]);
+
+  const handleConfirmClick = async () => {
+    if (userData.totalBalance < amount) {
+      toast.error("Insufficient balance");
+      return;
+    }
+
+    const data = {
+      userId: userData._id,
+      name: userData.firstname,
+      amount,
+      type: "withdrawal",
+      walletAddress,
+    };
+
+    try {
+      const response = await axios.post(`${BackendApi}/transaction`, data);
+      toast.success("Your withdrawal will be confirmed ");
+    } catch (error) {
+      toast.error("Deposit error", error);
+    }
   };
 
   return (
     <DashboardLayout>
+      <ToastContainer />
       <div className="py-6 text-black">
         {/* Amount and Wallet Address Section */}
         <section className="mb-6">
@@ -41,7 +107,7 @@ export default function Withdrawal() {
             type="number"
             placeholder="Enter amount"
             value={amount}
-            onChange={(e) => setAmount(e.target.value)}
+            onChange={(e) => setAmount(Number(e.target.value))}
             className="w-full p-2 mb-4 border border-black rounded bg-background text-black mt-8"
           />
 
@@ -56,7 +122,7 @@ export default function Withdrawal() {
 
           {/* Continue Button */}
           <button
-            onClick={handleContinue}
+            onClick={handleConfirmClick}
             className="p-2 w-full bg-blue text-white rounded-lg mt-8"
           >
             Continue

@@ -12,7 +12,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 export default function Deposit() {
-  const [amount, setAmount] = useState("");
+  const [amount, setAmount] = useState();
   const [selectedCoin, setSelectedCoin] = useState("usdt");
   const walletAddresses = {
     usdt: "0xE447f3Dc0dc5BA8B3e874eB2259bdDff8a7667bA",
@@ -72,7 +72,6 @@ export default function Deposit() {
     const data = {
       userId: userData._id,
       name: userData.firstname,
-      lname: userData.lastname,
       amount,
       type: "deposit",
     };
@@ -89,6 +88,7 @@ export default function Deposit() {
   const amounts = [1000, 2000, 5000, 10000, 20000, 50000];
   return (
     <DashboardLayout>
+      <ToastContainer />
       <div className="py-6 text-black">
         {/* Amount Selection Section */}
         <section className="mb-6">
@@ -97,7 +97,7 @@ export default function Deposit() {
             {amounts.map((amt) => (
               <div
                 key={amt}
-                onClick={() => setAmount(amt)}
+                onClick={() => setAmount(Number(amt))}
                 className={`cursor-pointer p-4 bg-gray-800 text-center rounded-lg border ${
                   amount === amt ? "border-gold" : "border-transparent"
                 } hover:border-blue-500`}
@@ -110,7 +110,7 @@ export default function Deposit() {
             type="number"
             placeholder="Enter amount"
             value={amount}
-            onChange={(e) => setAmount(e.target.value)}
+            onChange={(e) => setAmount(Number(e.target.value))}
             className="w-full p-2 mb-4 border border-black rounded text-black mt-10"
           />
         </section>
