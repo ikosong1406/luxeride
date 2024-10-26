@@ -21,7 +21,7 @@ module.exports = {
       gold: "#ddbf14",
       bluey: "#3772FF",
       orange: "#ec8305",
-      green: "#00ff7f",
+      green: "#19a05d",
       red: "#FF0000",
       black2: "#514949",
     },
