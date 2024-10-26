@@ -149,8 +149,8 @@ export default function Deposit() {
             className="mx-auto mb-4 border-2"
           />
 
-          <div style={{ width: "100%" }} className="flex justify-center mt-8">
-            <p className="text-same">{walletAddresses[selectedCoin]}</p>
+          <div className="flex justify-center mt-8">
+            <p className="text-sm">{walletAddresses[selectedCoin]}</p>
           </div>
           <button
             className="p-2 bg-blue text-white rounded-lg mt-10"
