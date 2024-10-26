@@ -128,7 +128,7 @@ const Signup = () => {
               className="w-full p-3 bg-gold rounded-lg text-white font-bold"
               disabled={loading}
             >
-              {loading ? "Registering..." : "Register"}
+              {loading ? "Creating Account..." : "Register"}
             </button>
           </form>
 

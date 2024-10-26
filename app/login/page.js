@@ -86,7 +86,7 @@ const Login = () => {
               className="w-full p-3 bg-gold rounded hover:bg-blue-500"
               disabled={loading}
             >
-              {loading ? "Logging in..." : "Login"}
+              {loading ? "Authenticating Details..." : "Login"}
             </button>
           </div>
 

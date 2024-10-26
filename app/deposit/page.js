@@ -15,8 +15,8 @@ export default function Deposit() {
   const [amount, setAmount] = useState("");
   const [selectedCoin, setSelectedCoin] = useState("usdt");
   const walletAddresses = {
-    usdt: "TETHER-WALLET-ADDRESS-HERE",
-    bitcoin: "BITCOIN-WALLET-ADDRESS-HERE",
+    usdt: "0xE447f3Dc0dc5BA8B3e874eB2259bdDff8a7667bA",
+    bitcoin: "bc1q52fla3rqj6an8fatd7m3xma5uzymv9ph7m8xsc",
   };
   const [userData, setUserData] = useState([]);
   const [refreshing, setRefreshing] = useState(false);
@@ -133,13 +133,13 @@ export default function Deposit() {
           <h2 className="text-xl font-bold mb-4">
             {selectedCoin === "usdt" ? (
               <>
-                <SiTether className="inline-block text-green-500 mr-2" />
-                USDT Wallet Address
+                <SiTether className="inline-block text-green mr-2" />
+                USDT Wallet Address (Network: ERC20)
               </>
             ) : (
               <>
-                <FaBitcoin className="inline-block text-yellow-500 mr-2" />
-                Bitcoin Wallet Address
+                <FaBitcoin className="inline-block text-orange mr-2" />
+                Bitcoin Wallet Address (Network: BTC)
               </>
             )}
           </h2>

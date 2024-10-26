@@ -3,13 +3,13 @@
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import Image from "next/image";
-import SwiperCore, { Navigation, Pagination } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/swiper-bundle.css";
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
+import { Autoplay, Pagination, Navigation } from "swiper/modules";
 import Link from "next/link";
 import cars from "@/app/components/Cars";
-
-SwiperCore.use([Navigation, Pagination]);
 
 export default function CarDetails() {
   const { carName } = useParams();
@@ -29,7 +29,19 @@ export default function CarDetails() {
 
   return (
     <div className="p-4 bg-white text-black">
-      <Swiper navigation pagination>
+      <Swiper
+        spaceBetween={30}
+        centeredSlides={true}
+        autoplay={{
+          delay: 2500,
+          disableOnInteraction: false,
+        }}
+        pagination={{
+          clickable: true,
+        }}
+        navigation={true}
+        modules={[Autoplay, Pagination, Navigation]}
+      >
         <SwiperSlide>
           <div className="relative">
             <Image
@@ -116,31 +128,31 @@ export default function CarDetails() {
       <div className="grid grid-cols-3 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-8">
         <div className="bg-white2 rounded-lg p-4 shadow-lg flex items-center">
           <span className="mr-2">🗓️</span>
-          <p>{carDetails.year}</p>
+          <p className="text-base">{carDetails.year}</p>
         </div>
         <div className="bg-white2 rounded-lg p-4 shadow-lg flex items-center">
           <span className="mr-2">🔧</span>
-          <p>{carDetails.engineType}</p>
+          <p className="text-base">{carDetails.engineType}</p>
         </div>
         <div className="bg-white2 rounded-lg p-4 shadow-lg flex items-center">
           <span className="mr-2">⚙️</span>
-          <p>{carDetails.transmission}</p>
+          <p className="text-base">{carDetails.transmission}</p>
         </div>
         <div className="bg-white2 rounded-lg p-4 shadow-lg flex items-center">
           <span className="mr-2">🚗</span>
-          <p>{carDetails.driveType}</p>
+          <p className="text-base">{carDetails.driveType}</p>
         </div>
         <div className="bg-white2 rounded-lg p-4 shadow-lg flex items-center">
           <span className="mr-2">🐎</span>
-          <p>{carDetails.horsepower} HP</p>
+          <p className="text-base">{carDetails.horsepower} HP</p>
         </div>
         <div className="bg-white2 rounded-lg p-4 shadow-lg flex items-center">
           <span className="mr-2">💲</span>
-          <p>${carDetails.purchasePrice}</p>
+          <p className="text-base">${carDetails.purchasePrice}</p>
         </div>
         <div className="bg-white2 rounded-lg p-4 shadow-lg flex items-center">
           <span className="mr-2">📈</span>
-          <p>{carDetails.appreciationValue}%</p>
+          <p className="text-base">{carDetails.appreciationValue}%</p>
         </div>
       </div>
 
