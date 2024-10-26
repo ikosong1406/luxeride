@@ -104,7 +104,7 @@ export default function Withdrawal() {
 
           {/* Amount Input */}
           <input
-            type="number"
+            type="text"
             placeholder="Enter amount"
             value={amount}
             onChange={(e) => setAmount(Number(e.target.value))}

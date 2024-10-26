@@ -10,6 +10,8 @@ import logo from "../../images/logo.png";
 import axios from "axios";
 import { getUserToken } from "@/app/components/storage";
 import BackendApi from "@/app/components/BackendApi";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function InvestPage() {
   const { carName } = useParams();
@@ -34,11 +36,7 @@ export default function InvestPage() {
   const estimatedProfit = rent * (shareHolding / 100);
   const totalReturns = investmentAmount + 730 * estimatedProfit;
 
-  const [userData, setUserData] = useState({
-    balance: 0,
-    firstname: "",
-    lastname: "",
-  });
+  const [userData, setUserData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [token, setToken] = useState(null);
 
@@ -58,12 +56,7 @@ export default function InvestPage() {
   const getData = async () => {
     try {
       const response = await axios.post(`${BackendApi}/userdata`, { token });
-      const fetchedData = response.data.data;
-      setUserData({
-        balance: fetchedData.balance || 0,
-        firstname: fetchedData.firstname || "",
-        lastname: fetchedData.lastname || "",
-      });
+      setUserData(response.data.data);
       setIsLoading(false);
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -75,11 +68,40 @@ export default function InvestPage() {
     if (token) getData();
   }, [token]);
 
+  const handleConfirmClick = async () => {
+    if (investmentAmount < 1000) {
+      toast.error("Investment amount must be more than $1000");
+      return;
+    }
+
+    if (userData.totalBalance < investmentAmount) {
+      toast.error("Insufficient balance");
+      return;
+    }
+
+    const data = {
+      userId: userData._id,
+      picture: carDetails.mainImage,
+      name: carDetails.make,
+      amount: investmentAmount,
+      share: shareHolding,
+      profit: estimatedProfit,
+    };
+
+    try {
+      const response = await axios.post(`${BackendApi}/portfolio`, data);
+      toast.success("Investment initiated successfully ");
+    } catch (error) {
+      toast.error("Investment error", error);
+    }
+  };
+
   // Show a loading state if carDetail has not been set yet
   if (!carDetails) return <p>Loading...</p>;
 
   return (
     <DashboardLayout>
+      <ToastContainer />
       <div className="container mx-auto text-black">
         <div className="relative">
           <Image
@@ -105,7 +127,7 @@ export default function InvestPage() {
             Amount
           </label>
           <input
-            type="number"
+            type="text"
             id="investment"
             value={investmentAmount}
             onChange={(e) => setInvestmentAmount(Number(e.target.value))}
@@ -165,7 +187,7 @@ export default function InvestPage() {
 
         <button
           className="mt-4 bg-blue text-white px-4 py-2 rounded"
-          onClick={() => alert("Investment Successful!")}
+          onClick={handleConfirmClick}
         >
           Confirm Investment
         </button>
