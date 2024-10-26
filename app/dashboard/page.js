@@ -7,8 +7,8 @@ import { getUserToken } from "../components/storage";
 import BackendApi from "../components/BackendApi";
 import moment from "moment";
 import {
-  FaBitcoin,
-  FaEthereum,
+  FaArrowDown,
+  FaArrowUp,
   FaWallet,
   FaChartLine,
   FaCoins,
@@ -132,40 +132,69 @@ export default function Overview() {
         {/* Transactions and Cars Invested Section */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* Transaction Details */}
-          <div className="bg-white2 shadow-lg p-6 rounded-lg">
-            <h2 className="text-lg font-semibold text-black">
-              Transaction Details
+          <div>
+            <h2 className="text-xl font-semibold text-black">
+              Recent Transactions
             </h2>
-            <table className="w-full table-auto mt-4 text-black">
-              <thead>
-                <tr className="text-left text-gray-400">
-                  <th className="pb-2">Date</th>
-                  <th className="pb-2">Amount</th>
-                  <th className="pb-2">Type</th>
+            <div className="space-y-4 text-black mt-4">
+              {userData.transactions.slice(0, 3).map((transaction, index) => (
+                <div
+                  key={index}
+                  className={`bg-white2 p-4 rounded-lg shadow-md flex items-center justify-between transition-transform transform hover:scale-105 ${
+                    transaction.type === "deposit"
+                      ? "border-l-4 border-green"
+                      : "border-l-4 border-red"
+                  }`}
+                >
+                  {/* Icon and Label */}
+                  <div className="flex items-center space-x-4">
+                    {transaction.type === "deposit" ? (
+                      <FaArrowDown className="text-green text-2xl" />
+                    ) : (
+                      <FaArrowUp className="text-red text-2xl" />
+                    )}
+                    <div>
+                      <h2 className="text-lg font-semibold text-gray-700">
+                        {transaction.type}
+                      </h2>
+                      <p className="text-gray-500">
+                        {new Date(transaction.date).toLocaleDateString()}
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Amount */}
+                  <div>
+                    <p
+                      className={`text-xl font-bold ${
+                        transaction.type === "deposit"
+                          ? "text-green-500"
+                          : "text-red-500"
+                      }`}
+                    >
+                      ${transaction.amount}
+                    </p>
+                    <p
+                      style={{
+                        color:
+                          transaction.status == "confirmed"
+                            ? "green"
+                            : "orange",
+                      }}
+                    >
+                      {transaction.status}
+                    </p>
+                  </div>
+                </div>
+              ))}
+              {userData.transactions.length === 0 && (
+                <tr className="text-gray-500 border-t border-gray-200">
+                  <td className="py-2" colSpan="3">
+                    No transactions available
+                  </td>
                 </tr>
-              </thead>
-              <tbody>
-                {userData.transactions.slice(0, 5).map((transaction, index) => (
-                  <tr
-                    key={index}
-                    className="text-gray-500 border-t border-gray-200"
-                  >
-                    <td className="py-2">
-                      {moment(transaction.date).format("MM/DD/YYYY")}
-                    </td>
-                    <td className="py-2">${transaction.amount}</td>
-                    <td className="py-2">{transaction.type}</td>
-                  </tr>
-                ))}
-                {userData.transactions.length === 0 && (
-                  <tr className="text-gray-500 border-t border-gray-200">
-                    <td className="py-2" colSpan="3">
-                      No transactions available
-                    </td>
-                  </tr>
-                )}
-              </tbody>
-            </table>
+              )}
+            </div>
           </div>
 
           {/* Cars Invested In */}
