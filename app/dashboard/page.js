@@ -67,7 +67,7 @@ export default function Overview() {
         totalInvestment: fetchedData.totalInvestment || 0,
         totalReturn: fetchedData.totalReturn || 0,
         transactions: fetchedData.transactions || [],
-        portfolio: fetchedData.carsInvested || [],
+        portfolio: fetchedData.portfolio || [],
       });
       setIsLoading(false);
     } catch (error) {
