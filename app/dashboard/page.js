@@ -207,7 +207,7 @@ export default function Overview() {
               {userData.portfolio.length === 0 ? (
                 <p className="text-gray-400">No assets available.</p>
               ) : (
-                userData.portfolio.map((asset, index) => (
+                userData.portfolio.slice(0, 3).map((asset, index) => (
                   <div
                     key={index}
                     className="bg-white2 rounded-lg shadow-md p-4 mb-4"
